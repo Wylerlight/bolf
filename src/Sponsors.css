@@ -1,0 +1,27 @@
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden; /* Hide anything outside the container */
+  background-color: #f1f1f1; /* Set a background color for the container */
+}
+
+.marquee {
+  display: flex;
+  animation: marquee linear infinite; /* We'll define the animation duration dynamically */
+}
+
+.sponsor-item {
+  margin-right: 50px; /* Add spacing between sponsors */
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px;
+  color: #333;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%); /* Start from right */
+  }
+  100% {
+    transform: translateX(-100%); /* End at the left */
+  }
+}
