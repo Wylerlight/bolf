@@ -1,19 +1,27 @@
 import { useState, useEffect } from "react";
 
 import "./App.css";
+import SignUp from "./components/SignUp";
 import SponsorsMarquee from "./Sponsors";
 
 import orgLogo from "./assets/image4.png";
 import phoneIcon from "./assets/phone-svgrepo-com.svg";
 import emailIcon from "./assets/mail-svgrepo-com.svg";
 import locationIcon from "./assets/pin-fill-sharp-circle-634-svgrepo-com.svg";
-import sponsorshipPoster from "./assets/sponsorship-poster.jpeg";
-import tournamentPoster from "./assets/tournament-poster.jpeg";
-import boardOfDirectorsPoster from "./assets/BOLF Board.jpg";
+import sponsorshipPoster from "./assets/golf-tourny2.JPG";
+import tournamentPoster from "./assets/Golf-Tourny1.JPG";
+import sponsorshipInfoPoster from "./assets/golf-sponsor1.JPG";
+import sponsorshipForm from "./assets/golf-sponsor2.JPG";
+import boardOfDirectorsPoster from "./assets/BOLF Board.JPG";
 
 function App() {
   const platinumSponsors = ["IEE", "Modern Woodmen", "Amlani Insurance Agency"];
   const goldSponsors = ["Prospect", "Fidelity", "Craignsons", "Paulson"];
+
+  const [dropdownOpen, setDropdownOpen] = useState(null);
+  const toggleDropdown = (menu) => {
+    setDropdownOpen(dropdownOpen === menu ? null : menu);
+  };
 
   return (
     <>
@@ -26,25 +34,41 @@ function App() {
           />
         </div>
         <ul className="navbar__list">
-          <a className="navbar__selections" href="#page-top">
-            Home
-          </a>
-          <a className="navbar__selections" href="#about">
-            About
-          </a>
-          <a className="navbar__selections" href="#events">
-            Events
-          </a>
-          <a className="navbar__selections" href="#contact">
-            Contact Us
-          </a>
-          <a className="navbar__selections" id="donate">
-            Donate
-          </a>
+          <li className="navbar__selections">
+            <a href="#page-top">Home</a>
+          </li>
+          <li className="navbar__selections">
+            <a href="#about">About</a>
+          </li>
+          <li
+            className="navbar__selections"
+            onClick={(e) => {
+              e.preventDefault();
+              toggleDropdown("menu3");
+            }}
+          >
+            <a href="">Events</a>
+            {dropdownOpen === "menu3" && (
+              <div className="navbar__events-dropdown">
+                <a href="upcoming-events" className="events__dropdown-list">
+                  Upcoming Events
+                </a>
+                <a href="past-events" className="events__dropdown-list">
+                  Past Events
+                </a>
+              </div>
+            )}
+          </li>
+          <li className="navbar__selections">
+            <a href="#contact">Contact Us</a>
+          </li>
+          <li className="navbar__selections">
+            <a id="donate">Donate</a>
+          </li>
         </ul>
       </nav>
       <section id="page-top" className="navbar__line"></section>
-      <section className="events" id="events">
+      <section className="events" id="upcoming-events">
         <h2 className="events__title">
           UPCOMING EVENTS AND SPONSORSHIP OPPORTUNITIES
         </h2>
@@ -55,8 +79,18 @@ function App() {
             alt="Event 2"
             className="events__image"
           />
+          <img
+            src={sponsorshipInfoPoster}
+            alt="Sponsorship Info"
+            className="events__image"
+          />
+          <img
+            src={sponsorshipForm}
+            alt="Sponsorship Form"
+            className="events__image"
+          />
         </div>
-        <button className="events__button">SIGN UP HERE</button>
+        {/* <button className="events__button">SIGN UP HERE</button> */}
       </section>
       <main className="main">
         <section className="youtube">
@@ -168,6 +202,12 @@ function App() {
       <div className="copyright">
         <p className="copyright__text">© 2025 Built On Love Foundation</p>
       </div>
+      {/* <SignUp
+        buttonText="Submit"
+        redirect=""
+        buttonRedirectText=""
+        onClose=""
+      /> */}
     </>
   );
 }
