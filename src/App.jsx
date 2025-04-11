@@ -12,7 +12,7 @@ import sponsorshipPoster from "./assets/golf-tourny2.JPG";
 import tournamentPoster from "./assets/Golf-Tourny1.JPG";
 import sponsorshipInfoPoster from "./assets/golf-sponsor1.JPG";
 import sponsorshipForm from "./assets/golf-sponsor2.JPG";
-import boardOfDirectorsPoster from "./assets/BOLF Board.JPG";
+import boardOfDirectorsPoster from "./assets/BOLF Board.jpg";
 
 function App() {
   const platinumSponsors = ["IEE", "Modern Woodmen", "Amlani Insurance Agency"];
