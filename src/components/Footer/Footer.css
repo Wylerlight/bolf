@@ -1,0 +1,24 @@
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f1f1f1;
+  gap: 1rem;
+}
+
+.footer__text {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #333;
+  /* text-decoration: none; */
+}
+
+.footer__icon {
+  width: 25px;
+  margin-right: 5px;
+}
