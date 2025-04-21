@@ -38,7 +38,7 @@ export default function DonateLinks({ isOpen, onClose }) {
     <div className="donate__overlay" onClick={onClose}>
       <div className="donate__content" onClick={(e) => e.stopPropagation()}>
         <h2>Support Our Mission</h2>
-        <p>Select an event to donate to:</p>
+        <p>Select an Event Sponsorship:</p>
         <ul className="donation__links">
           {paypalLinks.map((link, index) => (
             <li key={index}>
