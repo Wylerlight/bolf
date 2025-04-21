@@ -85,4 +85,15 @@
 
 .events__dropdown-list {
   padding: 10px;
+  &:hover {
+    cursor: pointer;
+    background-color: var(--quaternary-color);
+    color: #fff;
+  }
+}
+
+@media screen and (max-width: 868px) {
+  .navbar__events-dropdown {
+    left: -120%;
+  }
 }

@@ -1,11 +1,13 @@
 .footer {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  /* justify-content: space-around; */
   margin-top: 2rem;
   padding: 1rem;
-  background-color: #f1f1f1;
-  gap: 1rem;
+  /* background-color: #f1f1f1; */
+  background-color: #fff;
+  /* gap: 1rem; */
 }
 
 .footer__text {
@@ -15,7 +17,7 @@
   align-items: center;
   font-size: 1.2rem;
   color: #333;
-  /* text-decoration: none; */
+  margin: 1rem;
 }
 
 .footer__icon {

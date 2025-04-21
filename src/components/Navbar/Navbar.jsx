@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 import './Navbar.css';
 import orgLogo from '../../assets/image4.png';
 
+import DonateLinks from '../Donate-Popup/Donate-Popup';
+
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleDonateClick = () => {
+    setIsOpen(!isOpen);
+  };
+
   const [dropdownOpen, setDropdownOpen] = useState(null);
   const toggleDropdown = (menu) => {
     setDropdownOpen(dropdownOpen === menu ? null : menu);
@@ -95,9 +103,18 @@ export default function Navbar() {
           </a>
         </li>
         <li className="navbar__selections-donate">
-          <a id="">Donate</a>
+          <a
+            onClick={(e) => {
+              e.preventDefault();
+              handleDonateClick();
+            }}
+            className="donate__button"
+          >
+            Donate
+          </a>
         </li>
       </ul>
+      {isOpen && <DonateLinks isOpen={isOpen} onClose={handleDonateClick} />}
     </nav>
   );
 }
