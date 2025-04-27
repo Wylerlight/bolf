@@ -42,7 +42,12 @@ export default function DonateLinks({ isOpen, onClose }) {
         <ul className="donation__links">
           {paypalLinks.map((link, index) => (
             <li key={index}>
-              <a href={link.url} target="_blank" rel="noopener noreferrer">
+              <a
+                href={link.url}
+                className="donation__links-item"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {link.label}
               </a>
             </li>

@@ -30,11 +30,11 @@
   padding: 0;
   margin: 1rem 0;
   background-color: #f0f0f0;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .donation__links li {
-  padding: 0.75rem 0;
+  /* padding: 0.25rem 0; */
   font-size: large;
 }
 
@@ -42,11 +42,16 @@
   color: #9b0000;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
 }
 
-.donation__links a:hover {
-  color: #1a9b00;
+.donation__links-item {
+  transition: ease-in-out 0.2s;
+  border-radius: 8px;
+}
+
+.donation__links-item:hover {
+  background-color: #1a9b00;
+  color: #fff;
 }
 
 .close__button {

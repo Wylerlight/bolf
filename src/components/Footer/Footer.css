@@ -1,18 +1,15 @@
 .footer {
   display: flex;
   flex-direction: column;
-  /* flex-wrap: wrap; */
-  /* justify-content: space-around; */
   margin-top: 2rem;
   padding: 1rem;
-  /* background-color: #f1f1f1; */
   background-color: #fff;
-  /* gap: 1rem; */
 }
 
 .footer__text {
   display: flex;
   flex-wrap: wrap;
+  text-align: center;
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
