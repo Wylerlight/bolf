@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -7,15 +7,34 @@ import Footer from './components/Footer/Footer';
 import SponsorsMarquee from './Sponsors';
 import MailChimp from './components/MailChimp/MailChimp';
 
+import DonateLinks from './components/Donate-Popup/Donate-Popup';
+import DonateOnly from './components/Donate-Popup/Donate-Only';
+import DonateOnlyButton from './components/Buttons/Donate-Only-Button';
+
 import boardOfDirectorsPoster from './assets/BOLF Board.jpg';
 
 function App() {
   const platinumSponsors = ['IEE', 'Modern Woodmen', 'Amlani Insurance Agency'];
   const goldSponsors = ['Prospect', 'Fidelity', 'Craig & Sons', 'Paulson'];
 
+  // FUNCTIONS
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDonateOnly, setIsDonateOnly] = useState(false);
+
+  const handleDonateClick = () => {
+    setIsOpen(!isOpen);
+  };
+  const handleDonateOnlyClick = () => {
+    setIsDonateOnly(!isDonateOnly);
+  };
+
   return (
     <>
-      <Navbar />
+      <Navbar
+        handleDonateClick={handleDonateClick}
+        handleDonateOnlyClick={handleDonateOnlyClick}
+      />
       <section id="page-top" className="navbar__line"></section>
 
       <main className="main">
@@ -72,6 +91,12 @@ function App() {
                 Subscribe to keep up to date!
               </h2>
               <MailChimp />
+            </div>
+            <div className="donate-only-btn">
+              <DonateOnlyButton
+                openDonateModal={handleDonateOnlyClick}
+                styleIdentifier={'donate-main'}
+              />
             </div>
             <div className="welcome__about-extra">
               <p className="a">
@@ -137,15 +162,32 @@ function App() {
         <h2 className="contact__button-text">Subscribe to keep up to date!</h2>
         <MailChimp />
       </div>
+      <div className="donate-only-btn">
+        <DonateOnlyButton
+          openDonateModal={handleDonateOnlyClick}
+          styleIdentifier={'donate-main'}
+        />
+      </div>
       <Events />
+
       <div className="contact__button">
         <h2 className="contact__button-text">Subscribe to keep up to date!</h2>
         <MailChimp />
+      </div>
+      <div className="donate-only-btn">
+        <DonateOnlyButton
+          openDonateModal={handleDonateOnlyClick}
+          styleIdentifier={'donate-main'}
+        />
       </div>
       <Footer />
       <div className="copyright">
         <p className="copyright__text">© 2025 Built On Love Foundation</p>
       </div>
+      {isOpen && <DonateLinks isOpen={isOpen} onClose={handleDonateClick} />}
+      {isDonateOnly && (
+        <DonateOnly isOpen={isDonateOnly} onClose={handleDonateOnlyClick} />
+      )}
     </>
   );
 }

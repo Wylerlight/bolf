@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import './Navbar.css';
+import HamburgerMenu from '../Hamburger-Menu/Hamburger-Menu';
+
 import orgLogo from '../../assets/image4.png';
 
-import DonateLinks from '../Donate-Popup/Donate-Popup';
-
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleDonateClick = () => {
-    setIsOpen(!isOpen);
-  };
-
+export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
   const [dropdownOpen, setDropdownOpen] = useState(null);
   const toggleDropdown = (menu) => {
     setDropdownOpen(dropdownOpen === menu ? null : menu);
@@ -31,6 +25,10 @@ export default function Navbar() {
           className="organization__logo"
         />
       </div>
+      <HamburgerMenu
+        handleDonateClick={handleDonateClick}
+        handleDonateOnlyClick={handleDonateOnlyClick}
+      />
       <ul className="navbar__list">
         <li className="navbar__selections">
           <a
@@ -99,14 +97,24 @@ export default function Navbar() {
               scrollToSection('contact');
             }}
           >
-            Contact Us
+            Contact
           </a>
         </li>
-        <li className="navbar__selections-donate">
+        <li className="navbar__selections" id="signup__button">
           <a
             onClick={(e) => {
               e.preventDefault();
               handleDonateClick();
+            }}
+          >
+            Sign Up
+          </a>
+        </li>
+        <li className="navbar__selections" id="donate__button">
+          <a
+            onClick={(e) => {
+              e.preventDefault();
+              handleDonateOnlyClick();
             }}
             className="donate__button"
           >
@@ -114,7 +122,6 @@ export default function Navbar() {
           </a>
         </li>
       </ul>
-      {isOpen && <DonateLinks isOpen={isOpen} onClose={handleDonateClick} />}
     </nav>
   );
 }

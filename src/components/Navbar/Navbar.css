@@ -1,3 +1,8 @@
+a {
+  display: block;
+  padding: 10px 20px;
+}
+
 .navbar__line {
   width: 100%;
   height: 200px;
@@ -13,8 +18,9 @@
   );
   position: fixed;
   display: flex;
-  width: 100%;
-  flex-direction: row;
+  top: 0;
+  left: 2rem;
+  right: 2rem;
   justify-content: space-between;
   z-index: 5;
 }
@@ -28,25 +34,25 @@
 .navbar__list {
   list-style: none;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: flex-end;
   align-items: center;
   font-size: 18px;
   padding: 0;
-  margin: 0px 25px;
   position: relative;
 }
 
 .navbar__selections {
   position: relative;
+  text-align: center;
   color: black;
   text-decoration: none;
-  width: auto;
+  width: 8rem;
   margin: 5px 25px;
-  padding: 10px 20px;
   background-color: var(--secondary-color);
   color: #fff;
   border-radius: 10px;
+
   &:hover {
     cursor: pointer;
     background-color: var(--quaternary-color);
@@ -54,12 +60,19 @@
   }
 }
 
-.navbar__selections-donate {
+#donate__button {
   color: #fff;
-  border-radius: 10px;
-  margin: 5px 25px;
-  padding: 10px 20px;
   background-color: var(--primary-color);
+  transition: ease-in-out 0.3s;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: var(--tertiary-color);
+  }
+}
+
+#signup__button {
+  background-color: #9229f5;
   transition: ease-in-out 0.3s;
   &:hover {
     cursor: pointer;
@@ -96,4 +109,174 @@
   .navbar__events-dropdown {
     left: -120%;
   }
+}
+
+@media screen and (max-width: 1325px) and (min-width: 1000px) {
+  .navbar__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    grid-template-rows: auto auto; /* 2 rows */
+    list-style: none;
+    text-align: center;
+    justify-items: center;
+  }
+  .navbar__list li:nth-child(5),
+  .navbar__list li:nth-child(6) {
+    grid-column: span 2;
+    width: 50%;
+  }
+}
+
+.hamburger-menu {
+  display: none;
+}
+
+/* This applies to smaller screens */
+@media screen and (max-width: 1000px) {
+  /* Hide the default navbar on smaller screens */
+  .navbar__list {
+    display: none;
+  }
+
+  /* Hamburger menu style */
+  .hamburger-menu {
+    display: block;
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    z-index: 20;
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .hamburger-icon {
+    width: 100%;
+    height: 100%;
+    background-color: #ce1414;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+    font-size: xx-large;
+    cursor: pointer;
+    display: block;
+  }
+
+  /* Hide hamburger icon when the menu is open */
+  .hamburger-icon.open {
+    display: none;
+  }
+
+  /* Opened menu style */
+  .hamburger__menu-open {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 25%; /* Make the menu occupy 25% of the screen width */
+    background-color: rgba(133, 133, 133, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: translateX(100%);
+    pointer-events: none;
+    transition: all 0.4s ease-in-out;
+    border-radius: 20px 0px 0px 20px;
+  }
+
+  /* Show the menu when it's open */
+  .hamburger__menu-open.show {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  /* Close button style */
+  .hamburger__close {
+    position: absolute;
+    top: 10px;
+    right: 110%;
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    color: #fff;
+    background-color: #000;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: none;
+    font-weight: bold;
+  }
+
+  /* List of menu items */
+  .hamburger__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+  }
+
+  .hamburger__selections a {
+    background-color: var(--tertiary-color);
+    color: #fff;
+    padding: 1rem;
+    font-size: 1.25rem;
+    transition: background-color 0.3s ease;
+    border-bottom: #000 2px solid;
+  }
+  .hamburger__selections a:hover {
+    background-color: var(--secondary-color);
+    cursor: pointer;
+  }
+
+  .hamburger__list li:first-child a {
+    border-radius: 10px 0 0 0;
+  }
+  .hamburger__list li:last-child a {
+    border-radius: 0 0 0 10px;
+    border-bottom: none;
+  }
+
+  .hamburger__dropdown a {
+    background-color: #24b7fc;
+  }
+  .hamburger__dropdown a:hover {
+    background-color: #002291;
+  }
+
+  #donate a {
+    background-color: #ff5151;
+  }
+
+  #donate a:hover {
+    background-color: #1a9b00;
+  }
+
+  /* .hamburger__selections a {
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    padding: 1rem;
+    background-color: #ce1414;
+    transition: background-color 0.3s ease;
+  }
+
+  .hamburger__selections a:hover {
+    background-color: #d45656;
+    cursor: pointer;
+  } 
+
+  .hamburger__list:nth-child(1) {
+    background-color: #ce1414;
+  }
+  .hamburger__list:nth-child(6) {
+    background-color: #9229f5;
+  }*/
 }
