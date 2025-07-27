@@ -72,7 +72,7 @@ function App() {
               </p>
             </div>
           </div>
-
+          <Events />
           <section className="welcome__secondary">
             <div className="youtube">
               <div className="youtube__container">
@@ -168,7 +168,6 @@ function App() {
           styleIdentifier={'donate-main'}
         />
       </div>
-      <Events />
 
       <div className="contact__button">
         <h2 className="contact__button-text">Subscribe to keep up to date!</h2>
