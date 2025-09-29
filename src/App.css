@@ -168,6 +168,11 @@ a {
 
 .sponsors__title {
   margin: 0;
+  background-color: var(--tertiary-color);
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 10px 10px 0px 0px;
+  text-align: center;
 }
 
 .sponsors__list {

@@ -11,7 +11,7 @@ import DonateLinks from './components/Donate-Popup/Donate-Popup';
 import DonateOnly from './components/Donate-Popup/Donate-Only';
 import DonateOnlyButton from './components/Buttons/Donate-Only-Button';
 
-import boardOfDirectorsPoster from './assets/BOLF Board.jpg';
+import boardOfDirectorsPoster from './assets/BOLF-board-new.jpeg';
 
 function App() {
   const platinumSponsors = ['IEE', 'Modern Woodmen', 'Amlani Insurance Agency'];
@@ -72,7 +72,9 @@ function App() {
               </p>
             </div>
           </div>
+
           <Events />
+
           <section className="welcome__secondary">
             <div className="youtube">
               <div className="youtube__container">
@@ -125,7 +127,21 @@ function App() {
             </div>
           </section>
         </section>
+
         <section className="sponsors">
+          <div className="contact__button">
+            <h2 className="contact__button-text">
+              Subscribe to keep up to date!
+            </h2>
+            <MailChimp />
+          </div>
+          <div className="donate-only-btn">
+            <DonateOnlyButton
+              openDonateModal={handleDonateOnlyClick}
+              styleIdentifier={'donate-main'}
+            />
+          </div>
+
           <h2 className="sponsors__title">THANK YOU TO OUR SPONSORS! </h2>
           <SponsorsMarquee sponsors={platinumSponsors} scrollSpeed="20" />
           <SponsorsMarquee sponsors={goldSponsors} scrollSpeed="21" />
@@ -150,10 +166,10 @@ function App() {
               Joe Amlani - Amlani Insurance Agency
             </p>
             <p className="board__names-list">
-              Kevin Cisneroz - Inland Empire Escrow
+              Kevin Cisneros - Inland Empire Escrow
             </p>
             <p className="board__names-list">
-              Steven Burns - Cross Country Mortgage
+              Melissa Chagolla - Sierra Crest Mortgage
             </p>
           </div>
         </section>
@@ -169,16 +185,6 @@ function App() {
         />
       </div>
 
-      <div className="contact__button">
-        <h2 className="contact__button-text">Subscribe to keep up to date!</h2>
-        <MailChimp />
-      </div>
-      <div className="donate-only-btn">
-        <DonateOnlyButton
-          openDonateModal={handleDonateOnlyClick}
-          styleIdentifier={'donate-main'}
-        />
-      </div>
       <Footer />
       <div className="copyright">
         <p className="copyright__text">© 2025 Built On Love Foundation</p>

@@ -1,7 +1,13 @@
 .marquee-wrapper {
   width: 100%;
   overflow: hidden; /* Hide anything outside the container */
-  background-color: #f1f1f1; /* Set a background color for the container */
+  /* background-color: #f1f1f1; Set a background color for the container */
+  background-color: #333;
+  border-radius: 5px;
+  padding: 20px 0;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+  margin: 0px 0px 20px 0px;
 }
 
 .marquee {
@@ -14,7 +20,11 @@
   font-size: 24px;
   font-weight: bold;
   padding: 10px;
-  color: #333;
+  color: #fff;
+  border-left: solid 2px #fff;
+  border-right: solid 2px #fff;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 @keyframes marquee {
