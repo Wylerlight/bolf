@@ -100,14 +100,14 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
             Contact
           </a>
         </li>
-        <li className="navbar__selections" id="signup__button">
+        <li className="navbar__selections" id="nominate__button">
           <a
             onClick={(e) => {
               e.preventDefault();
               handleDonateClick();
             }}
           >
-            Sign Up
+            Nominate
           </a>
         </li>
         <li className="navbar__selections" id="donate__button">

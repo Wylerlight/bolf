@@ -20,7 +20,7 @@ export default function Footer() {
             alt="Location Icon"
             className="footer__icon address"
           />
-          1096 Calimesa Blvd, Suite 215 Calimesa, CA 92320
+          1096 Calimesa Blvd, Suite 101 Calimesa, CA 92320
         </a>
         <a className="footer__text" href="tel:+19093539605">
           <img src={phoneIcon} alt="Phone Icon" className="footer__icon" />

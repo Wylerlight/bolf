@@ -2,44 +2,44 @@ import React, { useState } from 'react';
 import './Events.css';
 
 import DonateLinks from '../Donate-Popup/Donate-Popup';
+import DonateOnly from '../Donate-Popup/Donate-Only';
+import Nominate from '../Donate-Popup/Nominate';
 
-import sponsorshipPoster from '../../assets/golf-poster2.jpg';
-import tournamentPoster from '../../assets/golf-poster1.jpg';
-import sponsorshipInfoPoster from '../../assets/golf-poster3.jpg';
-import sponsorshipForm from '../../assets/golf-poster4.jpg';
+import Thanksgiving from '../../assets/Thanksgiving Poster.jpg';
+import Christmas from '../../assets/Christmas Poster.jpg';
+import nominateBanner from '../../assets/BOLF Google Header .jpg';
 import eventsCollage1 from '../../assets/events-collage1.JPG';
 import eventsCollage2 from '../../assets/events-collage2.JPG';
 
 export default function Events() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isNominate, setIsNominate] = useState(false);
 
   const handleDonateClick = () => {
     setIsOpen(!isOpen);
+  };
+  const handleNominateClick = () => {
+    setIsNominate(!isNominate);
   };
   return (
     <>
       <section className="current__events" id="upcoming-events">
         <h2 className="events__title">
-          UPCOMING EVENTS AND SPONSORSHIP OPPORTUNITIES
+          CURRENT OUTREACH EVENTS <br /> 🦃 THANKSGIVING 🦃
         </h2>
-
+        <button
+          className="events-nominate-wrapper"
+          onClick={handleNominateClick}
+        >
+          <img
+            src={nominateBanner}
+            alt="Thanksgiving nominate banner"
+            className="nominate-banner"
+          />
+        </button>
         <div className="events__container">
-          <img src={tournamentPoster} alt="Event 1" className="events__image" />
-          <img
-            src={sponsorshipPoster}
-            alt="Event 2"
-            className="events__image"
-          />
-          <img
-            src={sponsorshipInfoPoster}
-            alt="Sponsorship Info"
-            className="events__image"
-          />
-          <img
-            src={sponsorshipForm}
-            alt="Sponsorship Form"
-            className="events__image"
-          />
+          <img src={Thanksgiving} alt="Event 1" className="events__image" />
+          <img src={Christmas} alt="Event 2" className="events__image" />
         </div>
         <button
           className="events__signup-button"
@@ -48,7 +48,7 @@ export default function Events() {
             handleDonateClick();
           }}
         >
-          SIGN UP HERE
+          DONATE
         </button>
       </section>
 
@@ -80,7 +80,10 @@ export default function Events() {
           <img src={eventsCollage2} alt="Event 2" className="events__collage" />
         </div>
       </section>
-      {isOpen && <DonateLinks isOpen={isOpen} onClose={handleDonateClick} />}
+      {isOpen && <DonateOnly isOpen={isOpen} onClose={handleDonateClick} />}
+      {isNominate && (
+        <Nominate isOpen={isNominate} onClose={handleNominateClick} />
+      )}
     </>
   );
 }

@@ -53,19 +53,40 @@
 }
 
 .events__signup-button {
-  background-color: #9229f5;
+  background-color: #c76413;
   color: #fff;
   font-size: 1.2rem;
   border-radius: 10px;
   padding: 1rem;
+  max-width: 600px;
   width: 50%;
   text-align: center;
   text-decoration: none;
   transition: background-color 0.3s ease;
   cursor: pointer;
   &:hover {
-    background-color: #7a1db0;
+    background-color: #3aa309;
   }
+}
+
+.events-nominate-wrapper {
+  background-color: #f36303;
+  color: #fff;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  padding: 1rem;
+  max-width: 900px;
+  width: 75%;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    background-color: #ffee00;
+  }
+}
+.nominate-banner {
+  width: 100%;
 }
 
 @media screen and (max-width: 1100px) {
