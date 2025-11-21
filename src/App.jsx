@@ -10,8 +10,9 @@ import MailChimp from './components/MailChimp/MailChimp';
 import DonateLinks from './components/Donate-Popup/Donate-Popup';
 import DonateOnly from './components/Donate-Popup/Donate-Only';
 import DonateOnlyButton from './components/Buttons/Donate-Only-Button';
+import Nominate from './components/Donate-Popup/Nominate';
 
-import boardOfDirectorsPoster from './assets/BOLF-board-new.jpeg';
+import boardOfDirectorsPoster from './assets/BOLF Board New.jpg';
 
 function App() {
   const platinumSponsors = ['IEE', 'Modern Woodmen', 'Amlani Insurance Agency'];
@@ -163,9 +164,6 @@ function App() {
             </p>
             <p className="board__names-list">Cesar Marrufo - C&D Real Estate</p>
             <p className="board__names-list">
-              Joe Amlani - Amlani Insurance Agency
-            </p>
-            <p className="board__names-list">
               Kevin Cisneros - Inland Empire Escrow
             </p>
             <p className="board__names-list">
@@ -189,7 +187,7 @@ function App() {
       <div className="copyright">
         <p className="copyright__text">© 2025 Built On Love Foundation</p>
       </div>
-      {isOpen && <DonateLinks isOpen={isOpen} onClose={handleDonateClick} />}
+      {isOpen && <Nominate isOpen={isOpen} onClose={handleDonateClick} />}
       {isDonateOnly && (
         <DonateOnly isOpen={isDonateOnly} onClose={handleDonateOnlyClick} />
       )}

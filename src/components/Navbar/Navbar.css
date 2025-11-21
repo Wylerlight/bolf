@@ -71,8 +71,8 @@ a {
   }
 }
 
-#signup__button {
-  background-color: #9229f5;
+#nominate__button {
+  background-color: #f36303;
   transition: ease-in-out 0.3s;
   &:hover {
     cursor: pointer;
