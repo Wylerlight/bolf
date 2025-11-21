@@ -30,7 +30,7 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
         handleDonateOnlyClick={handleDonateOnlyClick}
       />
       <ul className="navbar__list">
-        <li className="navbar__selections">
+        <li className="button-29">
           <a
             href=""
             onClick={(e) => {
@@ -41,7 +41,7 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
             Home
           </a>
         </li>
-        <li className="navbar__selections">
+        <li className="button-29">
           <a
             href=""
             onClick={(e) => {
@@ -52,17 +52,18 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
             About
           </a>
         </li>
-        <li className="navbar__selections">
+        <li className="button-29">
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              toggleDropdown('menu3');
+              scrollToSection('upcoming-events');
+              // toggleDropdown('menu3');
             }}
           >
             Events
           </a>
-          {dropdownOpen === 'menu3' && (
+          {/* {dropdownOpen === 'menu3' && (
             <div className="navbar__events-dropdown">
               <a
                 href=""
@@ -87,9 +88,9 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
                 Past Events
               </a>
             </div>
-          )}
+          )} */}
         </li>
-        <li className="navbar__selections">
+        <li className="button-29">
           <a
             href=""
             onClick={(e) => {
@@ -100,7 +101,7 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
             Contact
           </a>
         </li>
-        <li className="navbar__selections" id="nominate__button">
+        <li className="button-29" id="nominate__button">
           <a
             onClick={(e) => {
               e.preventDefault();
@@ -110,7 +111,7 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
             Nominate
           </a>
         </li>
-        <li className="navbar__selections" id="donate__button">
+        <li className="button-29" id="donate__button">
           <a
             onClick={(e) => {
               e.preventDefault();

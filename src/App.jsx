@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { ReactLenis, useLenis } from 'lenis/react';
+import { motion, useTransform, useScroll } from 'motion/react';
 
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -14,7 +16,16 @@ import Nominate from './components/Donate-Popup/Nominate';
 
 import boardOfDirectorsPoster from './assets/BOLF Board New.jpg';
 
+/* -------------------------------------------------------------------------- */
+/*                             new scroll section                             */
+/* -------------------------------------------------------------------------- */
+import About from './components/About/About';
+
 function App() {
+  // const lenis = useLenis((lenis) => {
+  //   console.log('Lenis instance:', lenis);
+  // });
+
   const platinumSponsors = ['IEE', 'Modern Woodmen', 'Amlani Insurance Agency'];
   const goldSponsors = ['Prospect', 'Fidelity', 'Craig & Sons', 'Paulson'];
 
@@ -30,103 +41,142 @@ function App() {
     setIsDonateOnly(!isDonateOnly);
   };
 
+  const scrollSectionRef = useRef(null);
+  const scrollInnerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: scrollSectionRef,
+    offset: ['start start', 'end end'],
+  });
+  const x = useTransform(scrollYProgress, [0, 1], [500, -600]);
+
   return (
     <>
+      <ReactLenis root />
       <Navbar
         handleDonateClick={handleDonateClick}
         handleDonateOnlyClick={handleDonateOnlyClick}
       />
-      <section id="page-top" className="navbar__line"></section>
+      {/* <section id="page-top" className="navbar__line"></section> */}
 
+      <section id="about" className="about">
+        <div className="horizontal-scroll-wrapper" ref={scrollSectionRef}>
+          <div className="horizontal-scroll-inner" ref={scrollInnerRef}>
+            <motion.div className="horizontal-scroll-overflow" style={{ x }}>
+              <div className="horizontal-card">
+                <h1 className="card-title">
+                  WELCOME TO THE BUILT ON LOVE FOUNDATION
+                </h1>
+                <p className="card-text">
+                  The BUILT ON LOVE FOUNDATION is dedicated to uplifting
+                  underprivileged individuals and families in the Inland Empire,
+                  with a direct focus on the Yucaipa to Banning Pass area.
+                  Through our efforts, we aim to bridge the gap for those
+                  struggling to make ends meet, ensuring that no family goes
+                  without essential support during critical times of the year
+                </p>
+              </div>
+              <div className="horizontal-card">
+                <h1 className="card-title">JAMES 1:22</h1>
+                <p className="card-text">
+                  "But be doers of the word, and not hearers only, deceiving
+                  yourselves"
+                </p>
+              </div>
+              <div className="horizontal-card">
+                <h1 className="card-title">CORE VALUES ✝</h1>
+                <p className="card-text">
+                  Belief in God Support in Community Care for Orphans & Widows
+                  Education for All
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        <motion.div
+          // className="about__container"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <div className="about__title">
+            <h1>BUILT ON LOVE FOUNDATION</h1>
+          </div>
+        </motion.div>
+        <motion.div
+          // className="about__container"
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <div className="about__title">
+            <h1>BUILT ON LOVE FOUNDATION</h1>
+          </div>
+        </motion.div>
+        <motion.div
+          // className="about__container"
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <div className="about__title">
+            <h1>BUILT ON LOVE FOUNDATION</h1>
+          </div>
+        </motion.div>
+      </section>
       <main className="main">
-        <section id="about" className="about">
-          <div className="welcome">
-            <p className="welcome__text" id="welcome-title">
-              WELCOME TO THE BUILT ON LOVE FOUNDATION!
-            </p>
-            <div>
-              <p className="welcome__text">-OUR MISSION-</p>
-              <p className="welcome__text">
-                The{' '}
-                <span style={{ color: '#FF5733' }}>
-                  BUILT ON LOVE FOUNDATION
-                </span>{' '}
-                is dedicated to uplifting underprivileged individuals and
-                families in the Inland Empire, with a direct focus on the
-                Yucaipa to Banning Pass area. Through our efforts, we aim to
-                bridge the gap for those struggling to make ends meet, ensuring
-                that no family goes without essential support during critical
-                times of the year.
-              </p>
-            </div>
-            <div>
-              <p className="welcome__text" id="bible">
-                JAMES 1:22
-              </p>
-              <p className="welcome__text" id="bible">
-                "But be doers of the word, and not hearers only, deceiving
-                yourselves"
-              </p>
-              <p className="welcome__text">
-                CORE VALUES ✝ Belief in God Support in Community Care for
-                Orphans & Widows Education for All
-              </p>
+        <Events />
+
+        <section className="welcome__secondary">
+          <div className="youtube">
+            <div className="youtube__container">
+              <iframe
+                width="350"
+                height="560"
+                src="https://www.youtube.com/embed/7hS-FOpFOnU"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
             </div>
           </div>
-
-          <Events />
-
-          <section className="welcome__secondary">
-            <div className="youtube">
-              <div className="youtube__container">
-                <iframe
-                  width="350"
-                  height="560"
-                  src="https://www.youtube.com/embed/7hS-FOpFOnU"
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </div>
-            <div className="contact__button">
-              <h2 className="contact__button-text">
-                Subscribe to keep up to date!
-              </h2>
-              <MailChimp />
-            </div>
-            <div className="donate-only-btn">
-              <DonateOnlyButton
-                openDonateModal={handleDonateOnlyClick}
-                styleIdentifier={'donate-main'}
-              />
-            </div>
-            <div className="welcome__about-extra">
-              <p className="a">
-                <span className="a__span">WHO WE ARE:</span>
-                <br />
-                We are doers of the WORD
-              </p>
-              <p className="b">
-                We love to give back to our community through combined efforts.
-                We support local children through community events such as the{' '}
-                <span style={{ color: '#FF5733' }}>Easter Drive</span> and give
-                away event,{' '}
-                <span style={{ color: '#FF5733' }}>
-                  Thanksgiving Food Drive
-                </span>
-                , and{' '}
-                <span style={{ color: '#FF5733' }}>Back To School Drive</span>.
-                Our hearts are firmly planted in caring for those who need it at
-                the time they need it.
-              </p>
-              <p className="c">
-                <span className="a__span">WHAT WE DO:</span>
-                <br />
-                We help as many people as we can and we have fun doing it!
-              </p>
-            </div>
-          </section>
+          <div className="contact__button">
+            <h2 className="contact__button-text">
+              Subscribe to keep up to date!
+            </h2>
+            <MailChimp />
+          </div>
+          <div className="donate-only-btn">
+            <DonateOnlyButton
+              openDonateModal={handleDonateOnlyClick}
+              styleIdentifier={'donate-main'}
+            />
+          </div>
+          <div className="welcome__about-extra">
+            <p className="a">
+              <span className="a__span">WHO WE ARE:</span>
+              <br />
+              We are doers of the WORD
+            </p>
+            <p className="b">
+              We love to give back to our community through combined efforts. We
+              support local children through community events such as the{' '}
+              <span style={{ color: '#FF5733' }}>Easter Drive</span> and give
+              away event,{' '}
+              <span style={{ color: '#FF5733' }}>Thanksgiving Food Drive</span>,
+              and <span style={{ color: '#FF5733' }}>Back To School Drive</span>
+              . Our hearts are firmly planted in caring for those who need it at
+              the time they need it.
+            </p>
+            <p className="c">
+              <span className="a__span">WHAT WE DO:</span>
+              <br />
+              We help as many people as we can and we have fun doing it!
+            </p>
+          </div>
         </section>
 
         <section className="sponsors">
