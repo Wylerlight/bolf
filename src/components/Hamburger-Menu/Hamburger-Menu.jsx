@@ -110,7 +110,7 @@ export default function HamburgerMenu({
                 setIsOpen(false);
               }}
             >
-              Sign Up
+              Nominate
             </a>
           </li>
           <li className="hamburger__selections" id="donate">
