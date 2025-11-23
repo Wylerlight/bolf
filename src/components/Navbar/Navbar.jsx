@@ -1,14 +1,32 @@
-// import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
-import HamburgerMenu from '../Hamburger-Menu/Hamburger-Menu';
-
 import orgLogo from '../../assets/image4.png';
 
 export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
-  // const [dropdownOpen, setDropdownOpen] = useState(null);
-  // const toggleDropdown = (menu) => {
-  //   setDropdownOpen(dropdownOpen === menu ? null : menu);
-  // };
+  const [dropdownOpen, setDropdownOpen] = useState(null);
+
+  const toggleDropdown = (menu) => {
+    setDropdownOpen(dropdownOpen === menu ? null : menu);
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      const eventsButton = event.target.closest('[data-dropdown="menu3"]');
+      const dropdown = event.target.closest('.navbar__events-dropdown');
+
+      if (!eventsButton && !dropdown && dropdownOpen === 'menu3') {
+        setDropdownOpen(null);
+      }
+    }
+
+    if (dropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [dropdownOpen]);
 
   function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
@@ -16,30 +34,38 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
       section.scrollIntoView({ behavior: 'smooth' });
     }
   }
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+
   return (
     <nav className="navbar">
-      <div className="navbar__logo">
+      <div
+        className="navbar__logo"
+        onClick={scrollToTop}
+        style={{ cursor: 'pointer' }}
+      >
         <img
           src={orgLogo}
           alt="Organization Logo"
           className="organization__logo"
         />
       </div>
-      <HamburgerMenu
-        handleDonateClick={handleDonateClick}
-        handleDonateOnlyClick={handleDonateOnlyClick}
-      />
+
       <ul className="navbar__list">
         <li className="button-29">
-          <a
-            href=""
+          <button
             onClick={(e) => {
               e.preventDefault();
-              scrollToSection('page-top');
+              scrollToTop();
             }}
           >
             Home
-          </a>
+          </button>
         </li>
         <li className="button-29">
           <a
@@ -51,23 +77,22 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
           >
             About
           </a>
-        </li>
-        <li className="button-29">
+        </li>{' '}
+        <li className="button-29" data-dropdown="menu3">
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              scrollToSection('upcoming-events');
-              // toggleDropdown('menu3');
+              scrollToSection('events');
+              toggleDropdown('menu3');
             }}
           >
             Events
           </a>
-          {/* {dropdownOpen === 'menu3' && (
-            <div className="navbar__events-dropdown">
+          {dropdownOpen === 'menu3' && (
+            <div className="navbar__events-dropdown show">
               <a
                 href=""
-                className="events__dropdown-list"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection('upcoming-events');
@@ -78,7 +103,6 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
               </a>
               <a
                 href=""
-                className="events__dropdown-list"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection('past-events');
@@ -88,7 +112,7 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
                 Past Events
               </a>
             </div>
-          )} */}
+          )}
         </li>
         <li className="button-29">
           <a
@@ -100,9 +124,10 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
           >
             Contact
           </a>
-        </li>
+        </li>{' '}
         <li className="button-29" id="nominate__button">
           <a
+            href="#"
             onClick={(e) => {
               e.preventDefault();
               handleDonateClick();
@@ -113,6 +138,7 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
         </li>
         <li className="button-29" id="donate__button">
           <a
+            href="#"
             onClick={(e) => {
               e.preventDefault();
               handleDonateOnlyClick();

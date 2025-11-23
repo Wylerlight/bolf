@@ -417,6 +417,88 @@
   }
 }
 
+/* Ultra-tiny screens (height ≤ 300px) - drastically reduce card size */
+@media (max-height: 300px) {
+  .slider-inner {
+    padding: 0.5rem 0.5rem 0.25rem 0.5rem !important;
+    gap: 0.5rem !important;
+    height: auto !important;
+    position: static !important;
+    overflow-y: visible !important;
+  }
+
+  .slider-card {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 120px !important;
+    padding: 0.5rem !important;
+    border-radius: 6px !important;
+    transform: none !important;
+    opacity: 1 !important;
+    margin: 0.25rem auto !important;
+  }
+
+  .slider-card h2 {
+    font-size: 0.9rem !important;
+    margin-bottom: 0.25rem !important;
+    line-height: 1.1 !important;
+    padding: 0.25rem 0.25rem 0.25rem 0.5rem !important;
+  }
+
+  .slider-card p {
+    font-size: 0.7rem !important;
+    line-height: 1.2 !important;
+    padding: 0.5rem !important;
+  }
+}
+
+/* Ultra-tiny width screens (width ≤ 400px and height ≤ 400px) */
+@media (max-width: 400px) and (max-height: 400px) {
+  .slider-section {
+    height: auto !important;
+    position: static !important;
+  }
+
+  .slider-inner {
+    position: static !important;
+    height: auto !important;
+    padding: 0.5rem !important;
+    gap: 0.5rem !important;
+    flex-direction: column !important;
+  }
+
+  .slider-card {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 100px !important;
+    padding: 0.4rem !important;
+    border-radius: 6px !important;
+    transform: none !important;
+    opacity: 1 !important;
+    margin: 0.2rem auto !important;
+    left: auto !important;
+    top: auto !important;
+  }
+
+  .slider-card h2 {
+    font-size: 0.8rem !important;
+    margin-bottom: 0.2rem !important;
+    line-height: 1.1 !important;
+    padding: 0.2rem 0.2rem 0.2rem 0.4rem !important;
+    border-left-width: 2px !important;
+  }
+
+  .slider-card p {
+    font-size: 0.65rem !important;
+    line-height: 1.1 !important;
+    padding: 0.3rem !important;
+  }
+}
+
 /* Short screen height adjustments for left-side navbar - HEIGHT-based only */
 @media screen and (max-height: 800px) and (min-width: 481px) and (max-width: 1200px) {
   .slider-inner {

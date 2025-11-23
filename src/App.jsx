@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { ReactLenis } from 'lenis/react';
 
 import './App.css';
@@ -45,13 +45,13 @@ function App() {
         handleDonateOnlyClick={handleDonateOnlyClick}
       />
       {/* <section id="page-top" className="navbar__line"></section> */}
-
       <section id="about" className="about">
         <Carousel />
-      </section>
-
+      </section>{' '}
       <main className="main">
-        <Events />
+        <section id="events">
+          <Events />
+        </section>
 
         <section className="welcome__secondary">
           <div className="youtube">
@@ -155,7 +155,6 @@ function App() {
           styleIdentifier={'donate-main'}
         />
       </div>
-
       <Footer />
       <div className="copyright">
         <p className="copyright__text">© 2025 Built On Love Foundation</p>

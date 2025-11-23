@@ -7,12 +7,19 @@ export default function Carousel() {
   const [isTablet, setIsTablet] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isMediumScreen, setIsMediumScreen] = useState(false);
+  const [isUltraTiny, setIsUltraTiny] = useState(false);
+
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth <= 480);
       setIsTablet(window.innerWidth <= 768 && window.innerWidth > 480);
       setIsMediumScreen(window.innerWidth <= 1024 && window.innerWidth > 800);
       setIsSmallScreen(window.innerWidth <= 800);
+      // Detect ultra-tiny screens (height ≤ 400px OR (width ≤ 400px AND height ≤ 400px))
+      setIsUltraTiny(
+        window.innerHeight <= 300 ||
+          (window.innerWidth <= 400 && window.innerHeight <= 400)
+      );
     };
 
     checkScreenSize();
@@ -171,8 +178,8 @@ export default function Carousel() {
         1, // Keep full opacity when stacked
         1, // Remain fully visible in stack
       ]
-    ); // For mobile screens, don't apply motion animations
-    if (isMobile) {
+    ); // For mobile screens or ultra-tiny screens, don't apply motion animations
+    if (isMobile || isUltraTiny) {
       return (
         <div
           className="slider-card"
@@ -211,7 +218,10 @@ export default function Carousel() {
       className="slider-section"
       aria-label="Foundation Information Carousel"
       role="region"
-      style={{ height: isMobile ? 'auto' : `${cards.length * 100 + 100}vh` }} // Dynamic height based on card count, auto for mobile
+      style={{
+        height:
+          isMobile || isUltraTiny ? 'auto' : `${cards.length * 100 + 100}vh`,
+      }}
     >
       <div className="slider-inner">
         {cards.map((card, index) => (
