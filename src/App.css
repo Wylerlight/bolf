@@ -4,16 +4,147 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #f1f1f1;
+  /* Beautiful non-profit gradient background */
+  background: linear-gradient(
+    135deg,
+    #f7fafc 0%,
+    #edf2f7 25%,
+    #e2e8f0 50%,
+    #cbd5e0 75%,
+    #a0aec0 100%
+  );
+  background-attachment: fixed;
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Ultra-narrow viewport fixes - NO left margin for phones */
+@media screen and (max-width: 400px) {
+  #root {
+    padding: 0rem 0.5rem;
+    margin-left: 0; /* No left margin for phones */
+  }
+
+  body {
+    font-size: 14px; /* Slightly smaller base font */
+  }
+}
+
+/* Extremely narrow viewport fixes - NO left margin for phones */
+@media screen and (max-width: 320px) {
+  #root {
+    padding: 0rem 0.25rem;
+    margin-left: 0; /* No left margin for phones */
+  }
+
+  body {
+    font-size: 13px; /* Even smaller base font */
+  }
+}
+
+/* Short screen height adjustments for left-side navbar - HEIGHT-based only */
+@media screen and (max-height: 800px) and (min-width: 481px) and (max-width: 1200px) {
+  #root {
+    margin-left: 80px;
+  }
+}
+
+@media screen and (max-height: 600px) and (min-width: 481px) and (max-width: 1200px) {
+  #root {
+    margin-left: 60px;
+  }
+}
+
+/* Wide short screens keep top navbar - no left margin */
+@media screen and (min-width: 1201px) and (max-height: 709px) {
+  #root {
+    margin-left: 0; /* No left margin for wide short screens */
+  }
+}
+
+/* Universal ultra-narrow viewport fixes */
+@media screen and (max-width: 400px) {
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Prevent horizontal overflow */
+  *:not(html):not(body) {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  /* Force smaller text on extremely narrow screens */
+  h1 {
+    font-size: 1.5rem !important;
+  }
+  h2 {
+    font-size: 1.3rem !important;
+  }
+  h3 {
+    font-size: 1.1rem !important;
+  }
+  h4 {
+    font-size: 1rem !important;
+  }
+  h5 {
+    font-size: 0.9rem !important;
+  }
+  h6 {
+    font-size: 0.8rem !important;
+  }
+  p {
+    font-size: 0.8rem !important;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 :root {
-  --primary-color: #d1495b;
-  --secondary-color: #edae49;
-  --tertiary-color: #00798c;
-  --quaternary-color: #30638e;
+  /* Updated non-profit color palette */
+  --primary-color: #2c5aa0; /* Trust blue */
+  --secondary-color: #e6a532; /* Warm gold */
+  --tertiary-color: #38a169; /* Hope green */
+  --quaternary-color: #4a5568; /* Professional gray */
+  --accent-color: #9f7aea; /* Supportive purple */
+  --background-light: rgba(255, 255, 255, 0.9);
+  --background-card: rgba(255, 255, 255, 0.95);
+  --shadow-soft: 0 8px 32px rgba(31, 41, 55, 0.1);
+  --shadow-medium: 0 12px 40px rgba(31, 41, 55, 0.15);
 }
 html {
   scroll-behavior: smooth;
@@ -34,6 +165,21 @@ a {
   gap: 2rem;
 }
 
+/* Ultra-narrow viewport adjustments for main layout */
+@media screen and (max-width: 400px) {
+  .main {
+    margin: 5px 0;
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .main {
+    margin: 2px 0;
+    gap: 0.75rem;
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /*                        Contact Button for MailChimp                        */
 /* -------------------------------------------------------------------------- */
@@ -46,11 +192,41 @@ a {
   margin: 20px;
 }
 .contact__button-text {
-  background-color: #000;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--tertiary-color)
+  );
   color: #fff;
-  padding: 10px 10px;
+  padding: 15px 20px;
   margin: 0px;
-  border-radius: 4px 0px 0px 4px;
+  border-radius: 8px 0px 0px 8px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Ultra-narrow viewport adjustments for contact button */
+@media screen and (max-width: 400px) {
+  .contact__button {
+    padding: 1rem;
+    margin: 10px 5px;
+  }
+
+  .contact__button-text {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .contact__button {
+    padding: 0.75rem;
+    margin: 8px 2px;
+  }
+
+  .contact__button-text {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -64,22 +240,51 @@ a {
 }
 
 #donate-main {
-  background-color: #0ea700;
+  background: linear-gradient(135deg, var(--tertiary-color), #48bb78);
   width: 500px;
-  padding: 1rem;
-  border-radius: 100px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+  padding: 1.2rem;
+  border-radius: 50px;
+  box-shadow: var(--shadow-medium);
   font-size: 1.5rem;
   margin-bottom: 3rem;
-  transition: ease-in-out 0.3s;
-  &:hover {
-    background-color: #1b8a11;
-  }
+  transition: all 0.3s ease;
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#donate-main:hover {
+  background: linear-gradient(135deg, #2f855a, var(--tertiary-color));
+  transform: translateY(-2px);
+  box-shadow: 0 15px 45px rgba(31, 41, 55, 0.2);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 700px) {
   #donate-main {
     width: 100%;
+  }
+}
+
+/* Ultra-narrow viewport adjustments for donate button */
+@media screen and (max-width: 400px) {
+  #donate-main {
+    width: 95%;
+    padding: 1rem;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    border-radius: 40px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  #donate-main {
+    width: 98%;
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    border-radius: 35px;
   }
 }
 
@@ -93,51 +298,105 @@ a {
   align-items: center;
   justify-content: center;
   text-align: center;
-
-  padding: 2rem;
-  background-color: #fff;
-  border-radius: 100px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+  padding: 2.5rem;
+  background: var(--background-card);
+  border-radius: 20px;
+  box-shadow: var(--shadow-medium);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
 .welcome__text {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #005f08;
+  color: var(--quaternary-color);
+}
+
+/* Ultra-narrow viewport adjustments for welcome section */
+@media screen and (max-width: 400px) {
+  .welcome {
+    padding: 1.5rem;
+    border-radius: 15px;
+  }
+
+  .welcome__text {
+    font-size: 1.3rem;
+    line-height: 1.4;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .welcome {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .welcome__text {
+    font-size: 1.2rem;
+    line-height: 1.3;
+  }
 }
 
 #welcome-title {
-  border-bottom: 2px solid #000;
+  border-bottom: 3px solid var(--secondary-color);
   text-wrap: normal;
-  padding-bottom: 1rem;
+  padding-bottom: 1.5rem;
   color: var(--primary-color);
+  font-weight: 700;
 }
 
 #bible {
   font-size: 1.5rem;
   color: var(--secondary-color);
   margin: 0;
-}
-
-.welcome__secondary {
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .welcome__about-extra {
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
-  color: #000;
+  color: var(--quaternary-color);
   font-weight: 600;
   margin: 0;
   text-align: center;
-  background-color: #fff;
-  border-radius: 100px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
-  padding: 2rem;
+  background: var(--background-card);
+  border-radius: 20px;
+  box-shadow: var(--shadow-medium);
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .a__span {
   color: var(--primary-color);
-  font-weight: 600;
+  font-weight: 700;
+}
+
+/* Ultra-narrow viewport adjustments for welcome about section */
+@media screen and (max-width: 400px) {
+  #bible {
+    font-size: 1.3rem;
+  }
+
+  .welcome__about-extra {
+    font-size: 1.3rem;
+    padding: 1.5rem;
+    border-radius: 15px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  #bible {
+    font-size: 1.2rem;
+  }
+
+  .welcome__about-extra {
+    font-size: 1.2rem;
+    padding: 1rem;
+    border-radius: 12px;
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -168,11 +427,28 @@ a {
 
 .sponsors__title {
   margin: 0;
-  background-color: var(--tertiary-color);
+  background: linear-gradient(135deg, var(--tertiary-color), #48bb78);
   color: #fff;
-  padding: 1rem 2rem;
-  border-radius: 10px 10px 0px 0px;
+  padding: 1.5rem 2.5rem;
+  border-radius: 15px 15px 0px 0px;
   text-align: center;
+  box-shadow: var(--shadow-soft);
+  font-weight: 700;
+}
+
+/* Ultra-narrow viewport adjustments for sponsors section */
+@media screen and (max-width: 400px) {
+  .sponsors__title {
+    padding: 1.2rem 1.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .sponsors__title {
+    padding: 1rem 1rem;
+    font-size: 1rem;
+  }
 }
 
 .sponsors__list {
@@ -192,23 +468,29 @@ a {
   display: flex;
   justify-content: space-around;
   gap: 2rem;
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 10px;
+  background: var(--background-card);
+  padding: 2.5rem;
+  border-radius: 20px;
   width: 100%;
+  box-shadow: var(--shadow-medium);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .board__directors-poster {
   width: 50%;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-medium);
+  border-radius: 15px;
 }
 
 .board__directors-title {
-  background-color: #9229f5;
+  background: linear-gradient(135deg, var(--accent-color), #b794f6);
   color: #fff;
-  border-radius: 10px;
+  border-radius: 15px;
   padding: 2rem;
   width: 90%;
+  box-shadow: var(--shadow-soft);
+  font-weight: 700;
 }
 
 .board__directors-container {
@@ -226,14 +508,21 @@ a {
 } */
 
 .board__names-list {
-  background-color: var(--quaternary-color);
+  background: linear-gradient(135deg, var(--primary-color), #3182ce);
   width: 80%;
   text-align: center;
   color: #fff;
   font-size: 1.5rem;
+  font-weight: 600;
   padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.board__names-list:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
 }
 
 @media screen and (max-width: 1100px) {
@@ -254,61 +543,12 @@ a {
 
 /*  Copyright  */
 .copyright {
-  font-size: 1.5rem;
-  color: #555;
+  font-size: 1.3rem;
+  color: var(--quaternary-color);
   text-align: center;
-}
-
-/* -------------------------------------------------------------------------- */
-/*                               Animation Code                               */
-/* -------------------------------------------------------------------------- */
-
-.horizontal-scroll-wrapper {
-  position: relative;
-  height: 200vh;
-}
-
-.horizontal-scroll-inner {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-
-.horizontal-scroll-overflow {
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  will-change: transform;
-}
-
-.horizontal-card {
-  min-width: 300px;
-  max-width: 500px;
-  height: 350px;
+  background: var(--background-light);
   padding: 2rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(8px);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 1rem;
-  margin-right: 2rem;
-}
-
-.card-title {
-  font-size: 2rem;
-  font-weight: 700;
-  opacity: 0.8;
-}
-
-.card-text {
-  font-size: 1.1rem;
-  line-height: 1.4;
-  opacity: 0.9;
+  border-radius: 15px;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-soft);
 }

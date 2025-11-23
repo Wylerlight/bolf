@@ -21,3 +21,40 @@
   width: 25px;
   margin-right: 5px;
 }
+
+/* Ultra-narrow viewport adjustments for footer */
+@media screen and (max-width: 400px) {
+  .footer {
+    margin-top: 1.5rem;
+    padding: 0.75rem;
+  }
+
+  .footer__text {
+    font-size: 1rem;
+    margin: 0.75rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer__icon {
+    width: 20px;
+    margin-right: 3px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .footer {
+    margin-top: 1rem;
+    padding: 0.5rem;
+  }
+
+  .footer__text {
+    font-size: 0.9rem;
+    margin: 0.5rem;
+  }
+
+  .footer__icon {
+    width: 18px;
+    margin-right: 2px;
+  }
+}

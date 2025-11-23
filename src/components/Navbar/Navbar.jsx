@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import './Navbar.css';
 import HamburgerMenu from '../Hamburger-Menu/Hamburger-Menu';
 
 import orgLogo from '../../assets/image4.png';
 
 export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
-  const [dropdownOpen, setDropdownOpen] = useState(null);
-  const toggleDropdown = (menu) => {
-    setDropdownOpen(dropdownOpen === menu ? null : menu);
-  };
+  // const [dropdownOpen, setDropdownOpen] = useState(null);
+  // const toggleDropdown = (menu) => {
+  //   setDropdownOpen(dropdownOpen === menu ? null : menu);
+  // };
 
   function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);

@@ -1,6 +1,5 @@
-import { useState, useRef } from 'react';
-import { ReactLenis, useLenis } from 'lenis/react';
-import { motion, useTransform, useScroll } from 'motion/react';
+import { useState, useRef, useEffect } from 'react';
+import { ReactLenis } from 'lenis/react';
 
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -16,10 +15,7 @@ import Nominate from './components/Donate-Popup/Nominate';
 
 import boardOfDirectorsPoster from './assets/BOLF Board New.jpg';
 
-/* -------------------------------------------------------------------------- */
-/*                             new scroll section                             */
-/* -------------------------------------------------------------------------- */
-import About from './components/About/About';
+import Carousel from './components/Carousel/Carousel';
 
 function App() {
   // const lenis = useLenis((lenis) => {
@@ -41,14 +37,6 @@ function App() {
     setIsDonateOnly(!isDonateOnly);
   };
 
-  const scrollSectionRef = useRef(null);
-  const scrollInnerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: scrollSectionRef,
-    offset: ['start start', 'end end'],
-  });
-  const x = useTransform(scrollYProgress, [0, 1], [500, -600]);
-
   return (
     <>
       <ReactLenis root />
@@ -59,74 +47,9 @@ function App() {
       {/* <section id="page-top" className="navbar__line"></section> */}
 
       <section id="about" className="about">
-        <div className="horizontal-scroll-wrapper" ref={scrollSectionRef}>
-          <div className="horizontal-scroll-inner" ref={scrollInnerRef}>
-            <motion.div className="horizontal-scroll-overflow" style={{ x }}>
-              <div className="horizontal-card">
-                <h1 className="card-title">
-                  WELCOME TO THE BUILT ON LOVE FOUNDATION
-                </h1>
-                <p className="card-text">
-                  The BUILT ON LOVE FOUNDATION is dedicated to uplifting
-                  underprivileged individuals and families in the Inland Empire,
-                  with a direct focus on the Yucaipa to Banning Pass area.
-                  Through our efforts, we aim to bridge the gap for those
-                  struggling to make ends meet, ensuring that no family goes
-                  without essential support during critical times of the year
-                </p>
-              </div>
-              <div className="horizontal-card">
-                <h1 className="card-title">JAMES 1:22</h1>
-                <p className="card-text">
-                  "But be doers of the word, and not hearers only, deceiving
-                  yourselves"
-                </p>
-              </div>
-              <div className="horizontal-card">
-                <h1 className="card-title">CORE VALUES ✝</h1>
-                <p className="card-text">
-                  Belief in God Support in Community Care for Orphans & Widows
-                  Education for All
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-
-        <motion.div
-          // className="about__container"
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, ease: 'easeInOut' }}
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <div className="about__title">
-            <h1>BUILT ON LOVE FOUNDATION</h1>
-          </div>
-        </motion.div>
-        <motion.div
-          // className="about__container"
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, ease: 'easeInOut' }}
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <div className="about__title">
-            <h1>BUILT ON LOVE FOUNDATION</h1>
-          </div>
-        </motion.div>
-        <motion.div
-          // className="about__container"
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, ease: 'easeInOut' }}
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <div className="about__title">
-            <h1>BUILT ON LOVE FOUNDATION</h1>
-          </div>
-        </motion.div>
+        <Carousel />
       </section>
+
       <main className="main">
         <Events />
 

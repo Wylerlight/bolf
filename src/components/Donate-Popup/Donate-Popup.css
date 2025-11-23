@@ -62,3 +62,43 @@
   border-radius: 6px;
   cursor: pointer;
 }
+
+/* Ultra-narrow viewport adjustments for donate popup */
+@media screen and (max-width: 400px) {
+  .donate__overlay {
+    padding: 0.5rem;
+  }
+
+  .donate__content {
+    max-width: 95%;
+    padding: 1.25rem;
+  }
+
+  .donation__links li {
+    font-size: 1rem;
+  }
+
+  .close__button {
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .donate__overlay {
+    padding: 0.25rem;
+  }
+
+  .donate__content {
+    max-width: 98%;
+    padding: 1rem;
+  }
+
+  .donation__links li {
+    font-size: 0.9rem;
+  }
+
+  .close__button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.9rem;
+  }
+}

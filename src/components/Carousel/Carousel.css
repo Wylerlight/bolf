@@ -1,0 +1,501 @@
+.slider-section {
+  position: relative;
+  width: 100%;
+  /* Height is now dynamically set in the component based on card count */
+}
+
+.slider-inner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.slider-card {
+  position: absolute;
+  /* Larger cards that scale with screen size */
+  width: 70%;
+  max-width: 600px;
+  height: 500px;
+  min-height: 400px;
+  padding: 2.5rem;
+  box-sizing: border-box;
+  /* Neutral, professional background */
+  background: linear-gradient(
+    135deg,
+    #4a5568 0%,
+    #2d3748 20%,
+    #1a202c 40%,
+    #2c5282 60%,
+    #3182ce 80%,
+    #4299e1 100%
+  );
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  overflow: hidden;
+
+  /* Subtle shadow */
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.15), 0px 4px 16px rgba(0, 0, 0, 0.1),
+    0px 2px 8px rgba(0, 0, 0, 0.05);
+
+  /* Ensure cards are positioned for animation */
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+  will-change: transform, opacity;
+
+  /* Content layout for uniform appearance */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  z-index: 2;
+}
+
+/* WCAG accessibility improvements */
+.slider-card:focus-within {
+  outline: 3px solid #90cdf4;
+  outline-offset: 3px;
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
+}
+
+/* Improve readability with better visual hierarchy */
+.slider-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    #4299e1 0%,
+    #63b3ed 25%,
+    #90cdf4 50%,
+    #bee3f8 75%,
+    #ebf8ff 100%
+  );
+  border-radius: 20px 20px 0 0;
+  z-index: 1;
+}
+
+/* Add a subtle overlay pattern for visual interest */
+.slider-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at top right,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(255, 255, 255, 0.05) 0%,
+      transparent 50%
+    );
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.slider-card h2 {
+  margin: 0 0 1.25rem 0;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #ffffff;
+  word-wrap: break-word;
+  hyphens: auto;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add visual hierarchy with neutral accent */
+  border-left: 4px solid #90cdf4;
+  padding-left: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.slider-card p {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #ffffff;
+  flex-grow: 1;
+  word-wrap: break-word;
+  hyphens: auto;
+  overflow-y: auto;
+  font-weight: 400;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .slider-card {
+    background: #000000;
+    border: 4px solid #ffffff;
+    box-shadow: 0px 4px 16px rgba(255, 255, 255, 0.5);
+  }
+
+  .slider-card h2 {
+    color: #ffffff;
+    border-left-color: #ffffff;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .slider-card p {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .slider-card {
+    transition: none;
+  }
+
+  .slider-card:focus-within {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .slider-card {
+    background: linear-gradient(
+      135deg,
+      #1a202c 0%,
+      #2d3748 20%,
+      #4a5568 40%,
+      #2c5282 60%,
+      #2b6cb0 80%,
+      #3182ce 100%
+    );
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .slider-card h2 {
+    color: #ffffff;
+    border-left-color: #90cdf4;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .slider-card p {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .slider-card::before {
+    background: linear-gradient(
+      90deg,
+      #2b6cb0 0%,
+      #3182ce 25%,
+      #4299e1 50%,
+      #63b3ed 75%,
+      #90cdf4 100%
+    );
+  }
+}
+
+/* Responsive design for different screen sizes */
+
+/* Large laptop screens - fix cutoff around 1100px */
+@media (max-width: 1200px) {
+  .slider-inner {
+    padding: 0 3rem;
+  }
+
+  .slider-card {
+    width: 65%;
+    max-width: 550px;
+    height: 480px;
+    padding: 2.25rem;
+  }
+}
+
+/* Tablet and small laptop screens */
+@media (max-width: 1024px) {
+  .slider-inner {
+    padding: 0 4rem;
+  }
+
+  .slider-card {
+    width: 60%;
+    max-width: 500px;
+    height: 450px;
+    min-height: 350px;
+    padding: 2rem;
+  }
+  .slider-card h2 {
+    font-size: 1.9rem;
+    margin-bottom: 1.125rem;
+  }
+
+  .slider-card p {
+    font-size: 1.0625rem;
+  }
+}
+
+/* Medium screens - fix positioning between 980px and 800px */
+@media (max-width: 980px) and (min-width: 801px) {
+  .slider-inner {
+    padding: 0 2.5rem;
+  }
+
+  .slider-card {
+    width: 68%;
+    max-width: 480px;
+    height: 460px;
+    padding: 2rem;
+  }
+}
+
+/* iPad and larger tablets - Switch to vertical fanning like Lenis */
+@media (max-width: 800px) {
+  .slider-inner {
+    padding: 0 3rem;
+  }
+
+  .slider-card {
+    width: 75%;
+    max-width: 420px;
+    height: 400px;
+    min-height: 320px;
+    padding: 1.75rem;
+    border-radius: 18px;
+  }
+  .slider-card h2 {
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+  }
+
+  .slider-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+/* Small tablets and large phones */
+@media (max-width: 640px) {
+  .slider-inner {
+    padding: 0 2rem;
+  }
+
+  .slider-card {
+    width: 80%;
+    max-width: 320px;
+    height: 340px;
+    min-height: 260px;
+    padding: 1.25rem;
+  }
+  .slider-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .slider-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+}
+
+/* Phone screens - disable carousel animation, show static cards */
+@media (max-width: 480px) {
+  .slider-section {
+    /* Convert to static layout on phones */
+    height: auto !important;
+    position: static;
+  }
+  .slider-inner {
+    position: static;
+    height: auto;
+    padding: 12rem 0.75rem 1rem 0.75rem; /* Significantly increased top padding for large navbar */
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .slider-card {
+    position: static;
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    min-height: 220px;
+    padding: 1rem;
+    border-radius: 12px;
+    left: auto;
+    top: auto;
+    transform: none;
+    opacity: 1 !important;
+    /* Override any motion transforms */
+    transform: none !important;
+    margin: 0 auto;
+  }
+  .slider-card h2 {
+    font-size: 1.35rem;
+    margin-bottom: 0.875rem;
+    border-left: 3px solid #e17055;
+    padding-left: 0.75rem;
+  }
+
+  .slider-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+/* Ultra-narrow viewports (browser snapped to quarter screen) - NO left navbar */
+@media (max-width: 400px) {
+  .slider-inner {
+    padding: 12rem 0.5rem 1rem 0.5rem; /* Back to top padding for phones */
+    gap: 1.5rem;
+  }
+
+  .slider-card {
+    max-width: 95%; /* Use almost full width */
+    min-height: 200px;
+    padding: 0.75rem;
+    border-radius: 10px;
+  }
+
+  .slider-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .slider-card p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+}
+
+/* Extremely narrow viewports (320px and below) - NO left navbar */
+@media (max-width: 320px) {
+  .slider-inner {
+    padding: 9rem 0.25rem 0.5rem 0.25rem; /* Top padding for phones */
+    gap: 1rem;
+  }
+
+  .slider-card {
+    max-width: 98%;
+    min-height: 180px;
+    padding: 0.5rem;
+    border-radius: 8px;
+  }
+
+  .slider-card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  .slider-card p {
+    font-size: 0.8rem;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+}
+
+/* Short screen height adjustments for left-side navbar - HEIGHT-based only */
+@media screen and (max-height: 800px) and (min-width: 481px) and (max-width: 1200px) {
+  .slider-inner {
+    top: 0; /* No top offset needed for left navbar */
+    height: 100vh;
+    padding-top: 2rem; /* Small top padding for content spacing */
+  }
+}
+
+@media screen and (max-height: 600px) and (min-width: 481px) and (max-width: 1200px) {
+  .slider-inner {
+    padding-top: 1.5rem; /* Even less top padding for very short screens */
+  }
+}
+
+/* Wide short screens - keep top navbar spacing */
+@media screen and (min-width: 1201px) and (max-height: 709px) {
+  .slider-inner {
+    top: max(100px, 8vh); /* Reduced top clearance for short screens */
+    height: calc(100vh - max(100px, 8vh));
+  }
+}
+
+/* Phone landscape mode - height-based card adjustments */
+@media screen and (max-width: 480px) and (max-height: 500px) {
+  .slider-card {
+    height: auto;
+    min-height: 150px; /* Smaller cards for landscape phones */
+    padding: 0.5rem;
+    margin: 0.5rem auto;
+  }
+
+  .slider-card h2 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .slider-card p {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+}
+
+/* Tablet landscape mode - better proportions */
+@media screen and (min-width: 481px) and (max-width: 1024px) and (max-height: 600px) {
+  .slider-card {
+    width: 60%;
+    max-width: 400px;
+    height: 300px;
+    min-height: 250px;
+    padding: 1.5rem;
+  }
+
+  .slider-card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .slider-card p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+/* Desktop navbar clearance - responsive to viewport height */
+@media screen and (min-width: 1001px) {
+  .slider-inner {
+    top: max(
+      100px,
+      12vh
+    ); /* Use whichever is larger: 100px or 12% of viewport height */
+    height: calc(100vh - max(100px, 12vh)); /* Adjust height accordingly */
+  }
+}
+
+/* Additional fix for very short screens */
+@media screen and (min-width: 1001px) and (max-height: 600px) {
+  .slider-inner {
+    top: 15vh; /* Use 15% of viewport height for short screens */
+    height: calc(100vh - 15vh);
+  }
+}
