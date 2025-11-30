@@ -1,37 +1,205 @@
-.marquee-wrapper {
+/* ========================================================================== */
+/*                           Modern Sponsors Marquee                         */
+/* ========================================================================== */
+
+.marquee-container {
+  position: relative;
   width: 100%;
-  overflow: hidden; /* Hide anything outside the container */
-  /* background-color: #f1f1f1; Set a background color for the container */
-  background-color: #333;
-  border-radius: 5px;
-  padding: 20px 0;
-  box-sizing: border-box;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
-  margin: 0px 0px 20px 0px;
+  overflow: hidden;
+  border-radius: 12px;
+  margin: 10px 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.marquee {
+/* Platinum tier styling */
+.marquee-container.platinum {
+  background: linear-gradient(135deg, #e5e7eb 0%, #f3f4f6 50%, #ffffff 100%);
+  border: 2px solid #d1d5db;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Gold tier styling */
+.marquee-container.gold {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #f59e0b 100%);
+  border: 2px solid #f59e0b;
+  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.3),
+    0 2px 8px rgba(245, 158, 11, 0.1);
+}
+
+.marquee-track {
   display: flex;
-  animation: marquee linear infinite; /* We'll define the animation duration dynamically */
+  align-items: center;
+  white-space: nowrap;
+  animation: marqueeScroll linear infinite;
+  padding: 15px 0;
+  gap: 60px; /* Increased spacing between sponsor cards */
 }
 
-.sponsor-item {
-  margin-right: 50px; /* Add spacing between sponsors */
-  font-size: 24px;
-  font-weight: bold;
-  padding: 10px;
-  color: #fff;
-  border-left: solid 2px #fff;
-  border-right: solid 2px #fff;
-  padding-left: 10px;
-  padding-right: 10px;
+.sponsor-card {
+  display: inline-flex;
+  align-items: center;
+  min-width: 220px; /* Slightly wider cards for better presence */
+  padding: 15px 25px; /* Increased padding */
+  margin-right: 60px; /* Increased margin between cards */
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease; /* Smooth transition for all properties including background */
+  position: relative;
+  overflow: hidden;
+  cursor: pointer; /* Indicate clickable */
 }
 
-@keyframes marquee {
+/* Platinum sponsor cards */
+.marquee-container.platinum .sponsor-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Gold sponsor cards */
+.marquee-container.gold .sponsor-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fffbf0 100%);
+  border: 1px solid #fbbf24;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.sponsor-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.sponsor-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1f2937;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.sponsor-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  text-transform: uppercase;
+}
+
+/* Platinum badge styling */
+.marquee-container.platinum .sponsor-badge {
+  background: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(107, 114, 128, 0.3);
+}
+
+/* Gold badge styling */
+.marquee-container.gold .sponsor-badge {
+  background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+  color: #92400e;
+  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+}
+
+/* Hover effects */
+.sponsor-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Sponsor name color changes on hover */
+.sponsor-card:hover .sponsor-name {
+  color: #2563eb; /* Blue color for clickable indication */
+}
+
+/* Platinum sponsor hover effects */
+.marquee-container.platinum .sponsor-card:hover {
+  box-shadow: 0 8px 25px rgba(107, 114, 128, 0.3);
+}
+
+.marquee-container.platinum .sponsor-card:hover .sponsor-name {
+  color: #4f46e5; /* Purple-blue for platinum sponsors */
+}
+
+/* Gold sponsor hover effects */
+.marquee-container.gold .sponsor-card:hover {
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+}
+
+.marquee-container.gold .sponsor-card:hover .sponsor-name {
+  color: #d97706; /* Darker gold/orange for gold sponsors */
+}
+
+/* Active state for click feedback */
+.sponsor-card:active {
+  transform: translateY(0px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Marquee animation */
+@keyframes marqueeScroll {
   0% {
-    transform: translateX(100%); /* Start from right */
+    transform: translateX(100%);
   }
   100% {
-    transform: translateX(-100%); /* End at the left */
+    transform: translateX(-100%);
+  }
+}
+
+/* Pause on hover for better UX */
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .marquee-track {
+    gap: 40px; /* Reduced but still spacious on tablets */
+  }
+
+  .sponsor-card {
+    min-width: 180px;
+    padding: 12px 18px;
+    margin-right: 40px;
+  }
+
+  .sponsor-name {
+    font-size: 0.95rem;
+  }
+
+  .sponsor-badge {
+    font-size: 0.65rem;
+    padding: 1px 6px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .marquee-track {
+    gap: 30px; /* Appropriate spacing for mobile */
+    padding: 12px 0;
+  }
+
+  .sponsor-card {
+    min-width: 160px;
+    padding: 10px 15px;
+    margin-right: 30px;
+  }
+
+  .sponsor-name {
+    font-size: 0.9rem;
+  }
+
+  .sponsor-badge {
+    font-size: 0.6rem;
   }
 }

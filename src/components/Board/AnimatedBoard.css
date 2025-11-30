@@ -1,0 +1,1418 @@
+/* ========================================================================== */
+/*                           Animated Board Component                        */
+/* ========================================================================== */
+
+.animated-board {
+  width: 100%;
+  padding: 3rem 0;
+  position: relative;
+}
+
+/* New Professional Banner Styles */
+.board-banner {
+  background: linear-gradient(
+    135deg,
+    #4338ca 0%,
+    #6366f1 25%,
+    #8b5cf6 50%,
+    #6366f1 75%,
+    #4338ca 100%
+  );
+  background-size: 200% 200%;
+  animation: subtleGradientShift 12s ease infinite;
+  padding: 3rem 2rem;
+  margin-bottom: 4rem;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(67, 56, 202, 0.25),
+    0 10px 20px rgba(67, 56, 202, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+@keyframes subtleGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.board-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 25% 25%,
+      rgba(255, 255, 255, 0.12) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 75% 75%,
+      rgba(255, 255, 255, 0.08) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+}
+
+.board-banner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.banner-accent {
+  height: 3px;
+  width: 80px;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  margin: 0 auto 2rem auto;
+  border-radius: 2px;
+  transform-origin: left;
+}
+
+.banner-title {
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 1rem 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.banner-subtitle {
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: #cbd5e1;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  line-height: 1.5;
+  letter-spacing: 0.025em;
+  font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Banner Responsive Styles */
+@media screen and (max-width: 768px) {
+  .board-banner {
+    padding: 2.5rem 1.5rem;
+    margin-bottom: 3rem;
+    border-radius: 12px;
+  }
+
+  .banner-title {
+    font-size: 2.25rem;
+  }
+
+  .banner-subtitle {
+    font-size: 1rem;
+  }
+
+  .banner-accent {
+    width: 60px;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .board-banner {
+    padding: 2rem 1rem;
+  }
+
+  .banner-title {
+    font-size: 1.875rem;
+  }
+
+  .banner-subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 300px);
+  grid-template-rows: repeat(2, 300px);
+  gap: 2rem;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.board-card {
+  border-radius: 20px;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.board-card.expanded {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important; /* Use dynamic viewport height for mobile */
+  z-index: 10005;
+  border-radius: 0 !important;
+  grid-column: unset !important;
+  grid-row: unset !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  max-height: 100dvh !important;
+  overflow: hidden;
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.4),
+    transparent
+  );
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0;
+  text-align: left;
+}
+
+/* Member Image Styles - Remove since we're using background images */
+.card-image-container {
+  display: none;
+}
+
+.member-image {
+  display: none;
+}
+
+.board-card:hover .card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.2)
+  );
+  transition: background 0.3s ease;
+}
+
+/* Grid positioning for 2x2 layout - only applies to larger screens */
+@media screen and (min-width: 769px) {
+  .card-1 {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .card-2 {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .card-3 {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .card-4 {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+.member-image-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.member-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.3rem 0;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.member-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.3rem 0;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.member-company {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Expanded Card Styles */
+.expanded-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.4)
+  );
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+.expanded-content {
+  color: #fff;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.expanded-header {
+  margin-bottom: 2rem;
+}
+
+.expanded-name {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  color: #fff;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+}
+
+.expanded-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.expanded-company {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.expanded-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.expanded-details .bio-section,
+.expanded-details .achievements-section {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.expanded-details h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.expanded-details p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.expanded-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.expanded-details li {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.expanded-details li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: bold;
+}
+
+.expanded-details li:last-child {
+  margin-bottom: 0;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh; /* Use dynamic viewport height for mobile */
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 10002;
+  max-width: 100vw;
+  max-height: 100vh;
+  max-height: 100dvh;
+}
+
+.close-button {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10006;
+  backdrop-filter: blur(10px);
+  transition: background 0.3s ease;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.modal-content {
+  padding: 3rem;
+  overflow-y: visible;
+  color: #fff;
+}
+
+/* Modal Header with Image */
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.modal-image-container {
+  flex-shrink: 0;
+}
+
+.modal-member-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.modal-image-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.modal-text-header {
+  flex: 1;
+}
+
+.modal-name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.modal-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 2rem 0;
+  opacity: 0.9;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.modal-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.bio-section,
+.achievements-section,
+.company-section {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-details h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.modal-details p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.achievements-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.achievements-section li {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.achievements-section li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: bold;
+}
+
+.achievements-section li:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive Design */
+
+/* iPad and tablet landscape */
+@media screen and (max-width: 1200px) and (min-width: 769px) {
+  .modal-card {
+    max-width: 600px;
+    height: 80vh;
+  }
+}
+
+/* iPad portrait and small laptops */
+@media screen and (max-width: 1100px) {
+  .banner-title {
+    font-size: 3rem;
+  }
+
+  .banner-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .banner-icon {
+    font-size: 3.5rem;
+  }
+
+  .board-grid {
+    grid-template-columns: repeat(2, 280px);
+    grid-template-rows: repeat(2, 280px);
+    gap: 1.5rem;
+  }
+
+  .board-card {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+/* Small height screens (landscape phones, small laptops) */
+@media screen and (max-height: 600px) {
+  .modal-card {
+    height: 95vh;
+    max-height: none;
+  }
+
+  .modal-content {
+    padding: 1.5rem;
+  }
+
+  .modal-header {
+    margin-bottom: 1rem;
+  }
+
+  .modal-details {
+    gap: 1rem;
+  }
+
+  .bio-section,
+  .achievements-section,
+  .company-section {
+    padding: 1rem;
+  }
+
+  /* Expanded card styles for landscape orientation */
+  .expanded-overlay {
+    padding: 1rem;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+
+  .expanded-content {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+  }
+
+  .expanded-header {
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .expanded-name {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .expanded-title {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .expanded-company {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .expanded-details {
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+  }
+
+  .expanded-details .bio-section,
+  .expanded-details .achievements-section {
+    padding: 1rem;
+  }
+
+  .expanded-details h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .expanded-details p,
+  .expanded-details li {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .close-button {
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+/* Tablet portrait and larger phones */
+@media screen and (max-width: 768px) {
+  .animated-board {
+    padding: 2rem 0;
+  }
+
+  .board-banner {
+    padding: 3rem 1.5rem;
+    margin-bottom: 3rem;
+    border-radius: 20px;
+  }
+
+  .banner-title {
+    font-size: 2.5rem;
+  }
+
+  .banner-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .banner-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  .board-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 220px);
+    gap: 1.5rem;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .board-card {
+    width: 100%;
+    height: 220px;
+  }
+  .card-image-container {
+    display: none;
+  }
+
+  .card-content {
+    padding: 0.4rem;
+  }
+  .member-name {
+    font-size: 1rem;
+  }
+
+  .member-title {
+    font-size: 0.8rem;
+  }
+
+  .member-company {
+    font-size: 0.7rem;
+  }
+
+  .modal-card {
+    width: 95vw;
+    max-width: 500px;
+    height: 85vh;
+    border-radius: 20px;
+  }
+
+  .modal-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .modal-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .modal-member-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .modal-name {
+    font-size: 2rem;
+  }
+
+  .modal-title {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .expanded-overlay {
+    padding: 1.5rem;
+    justify-content: flex-start;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.95),
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.5)
+    );
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-width: 100vw;
+    max-height: 100vh;
+    max-height: 100dvh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .expanded-content {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .expanded-header {
+    margin-bottom: 2rem;
+    padding-top: max(4rem, 15vh);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .expanded-name {
+    font-size: 2.2rem;
+  }
+
+  .expanded-title {
+    font-size: 1.2rem;
+  }
+
+  .expanded-company {
+    font-size: 1rem;
+  }
+
+  .expanded-details {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .expanded-details .bio-section,
+  .expanded-details .achievements-section {
+    padding: 1.5rem;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .close-button {
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+    position: fixed;
+    z-index: 10007;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Small tablets and mobile landscape */
+@media screen and (max-width: 640px) {
+  .board-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 200px);
+    gap: 1.5rem;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .board-card {
+    width: 100%;
+    height: 200px;
+    padding: 0;
+  }
+
+  .card-overlay {
+    padding: 1rem;
+  }
+
+  .member-name {
+    font-size: 1rem;
+  }
+
+  .member-title {
+    font-size: 0.8rem;
+  }
+
+  .member-company {
+    font-size: 0.7rem;
+  }
+}
+
+/* Mobile phones */
+@media screen and (max-width: 480px) {
+  .board-banner {
+    padding: 2.5rem 1rem;
+    margin-bottom: 2.5rem;
+    border-radius: 15px;
+  }
+
+  .banner-title {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  .banner-subtitle {
+    font-size: 1rem;
+  }
+
+  .banner-icon {
+    font-size: 2.5rem;
+  }
+
+  .board-header {
+    padding: 1rem;
+  }
+
+  .board-title {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+
+  .board-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 180px);
+    gap: 1.2rem;
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  .board-card {
+    width: 100%;
+    height: 180px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+  }
+
+  .card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.4),
+      transparent
+    );
+    padding: 1rem;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .card-content {
+    padding: 0;
+    text-align: left;
+  }
+
+  .member-name {
+    font-size: 0.95rem;
+  }
+
+  .member-title {
+    font-size: 0.75rem;
+  }
+
+  .member-company {
+    font-size: 0.65rem;
+  }
+
+  .modal-card {
+    width: 98vw;
+    max-width: none;
+    height: 90vh;
+    border-radius: 15px;
+  }
+
+  .modal-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .modal-member-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .modal-name {
+    font-size: 1.6rem;
+  }
+
+  .modal-title {
+    font-size: 1rem;
+  }
+
+  .close-button {
+    top: 1rem;
+    right: 1rem;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+
+  .modal-details h4 {
+    font-size: 1.1rem;
+  }
+
+  .modal-details p {
+    font-size: 0.9rem;
+  }
+
+  .achievements-section li {
+    font-size: 0.9rem;
+  }
+  .expanded-overlay {
+    padding: 1rem;
+    justify-content: flex-start;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.95),
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.5)
+    );
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-width: 100vw;
+    max-height: 100vh;
+    max-height: 100dvh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .expanded-content {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: auto;
+  }
+
+  .expanded-header {
+    margin-bottom: 1.5rem;
+    padding-top: max(3rem, 10vh);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .expanded-name {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .expanded-title {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .expanded-company {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .expanded-details {
+    gap: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .expanded-details .bio-section,
+  .expanded-details .achievements-section {
+    padding: 1rem;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .expanded-details h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .expanded-details p,
+  .expanded-details li {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .close-button {
+    top: 1.5rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    position: fixed;
+    z-index: 10007;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Very small phones */
+@media screen and (max-width: 360px) {
+  .board-banner {
+    padding: 2rem 0.8rem;
+    border-radius: 12px;
+  }
+
+  .banner-title {
+    font-size: 1.8rem;
+  }
+
+  .banner-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .banner-icon {
+    font-size: 2.2rem;
+  }
+
+  .board-grid {
+    grid-template-rows: repeat(4, 160px);
+    gap: 1rem;
+    max-width: 240px;
+  }
+
+  .board-card {
+    height: 160px;
+  }
+
+  .card-overlay {
+    padding: 0.8rem;
+  }
+
+  .member-name {
+    font-size: 0.85rem;
+  }
+
+  .member-title {
+    font-size: 0.7rem;
+  }
+
+  .member-company {
+    font-size: 0.6rem;
+  }
+
+  .modal-content {
+    padding: 1rem 0.8rem;
+  }
+
+  .modal-name {
+    font-size: 1.4rem;
+  }
+  .close-button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    top: 2rem;
+    right: 1rem;
+    position: fixed;
+    z-index: 10007;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+  }
+  .expanded-overlay {
+    padding: 0.8rem;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-width: 100vw;
+    max-height: 100vh;
+    max-height: 100dvh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: flex-start;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.95),
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.5)
+    );
+  }
+
+  .expanded-content {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .expanded-header {
+    padding-top: 2.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .expanded-name {
+    font-size: 1.5rem;
+  }
+
+  .expanded-title {
+    font-size: 0.9rem;
+  }
+
+  .expanded-company {
+    font-size: 0.8rem;
+  }
+
+  .expanded-details {
+    gap: 1rem;
+  }
+
+  .expanded-details .bio-section,
+  .expanded-details .achievements-section {
+    padding: 0.8rem;
+  }
+
+  .expanded-details h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+  .expanded-details p,
+  .expanded-details li {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+/* Mobile landscape orientation - very short screens */
+@media screen and (max-height: 450px) and (orientation: landscape) {
+  .expanded-overlay {
+    padding: 0.5rem;
+    justify-content: flex-start;
+    overflow-y: auto;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.95),
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.6)
+    );
+  }
+
+  .expanded-content {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    height: auto;
+  }
+
+  .expanded-header {
+    padding-top: 0.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .expanded-name {
+    font-size: 1.6rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+  }
+
+  .expanded-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+    line-height: 1.2;
+  }
+
+  .expanded-company {
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .expanded-details {
+    gap: 0.8rem;
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+  }
+
+  .expanded-details .bio-section,
+  .expanded-details .achievements-section {
+    padding: 0.8rem;
+  }
+
+  .expanded-details h4 {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.2;
+  }
+
+  .expanded-details p,
+  .expanded-details li {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .close-button {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}
+
+/* Extra short landscape screens */
+@media screen and (max-height: 350px) and (orientation: landscape) {
+  .expanded-overlay {
+    padding: 0.3rem;
+  }
+
+  .expanded-header {
+    padding-top: 0.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .expanded-name {
+    font-size: 1.4rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .expanded-title {
+    font-size: 0.8rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .expanded-company {
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .expanded-details {
+    gap: 0.5rem;
+  }
+
+  .expanded-details .bio-section,
+  .expanded-details .achievements-section {
+    padding: 0.5rem;
+  }
+
+  .expanded-details h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .expanded-details p,
+  .expanded-details li {
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .close-button {
+    top: 0.3rem;
+    right: 0.3rem;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}
+
+/* Mobile viewport fix for full-screen coverage */
+@media screen and (max-width: 480px) {
+  .board-card.expanded {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    height: -webkit-fill-available !important;
+    z-index: 10005;
+    border-radius: 0 !important;
+    max-width: none !important;
+    max-height: none !important;
+    overflow: hidden;
+    transform: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .expanded-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    transform: none !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .close-button {
+    top: max(1.5rem, env(safe-area-inset-top, 1.5rem)) !important;
+    right: max(1rem, env(safe-area-inset-right, 1rem)) !important;
+    position: fixed !important;
+    z-index: 10007 !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    border: 2px solid rgba(255, 255, 255, 0.4) !important;
+  }
+}

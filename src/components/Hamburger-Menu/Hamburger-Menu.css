@@ -1,0 +1,401 @@
+/* Clean Hamburger Menu Styling - Full Screen Overlay Approach */
+
+/* Hamburger Icon Button */
+.hamburger-icon {
+  background: linear-gradient(135deg, #2c5aa0, #3182ce);
+  border: 2px solid #ffffff;
+  font-size: 1.2rem;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  display: none; /* Hidden by default, shown only on mobile */
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  z-index: 10000;
+  position: fixed;
+  top: calc(1rem + 24px); /* Navbar padding (1rem) + half of navbar height */
+  right: 3rem; /* Align with navbar's right padding */
+  transform: translateY(-50%);
+  box-shadow: 0 4px 12px rgba(44, 90, 160, 0.3);
+  font-weight: bold;
+}
+
+/* Show hamburger menu on smaller screens */
+@media screen and (max-width: 700px) {
+  .hamburger-icon {
+    display: flex;
+  }
+}
+
+/* Adjust hamburger icon for small heights */
+@media screen and (max-height: 500px) {
+  .hamburger-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+    top: calc(0.4rem + 18px); /* Match navbar's smaller padding */
+    right: 2.5rem;
+  }
+}
+
+@media screen and (max-height: 400px) {
+  .hamburger-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+    top: calc(0.3rem + 14px);
+    right: 2rem;
+  }
+}
+
+/* Additional mobile responsive adjustments */
+@media screen and (max-width: 480px) {
+  .hamburger-icon {
+    right: 2.5rem;
+  }
+
+  .hamburger-close {
+    right: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .hamburger-icon {
+    width: 46px;
+    height: 46px;
+    right: 2rem;
+  }
+
+  .hamburger-close {
+    width: 50px;
+    height: 50px;
+    right: 2rem;
+    font-size: 1.6rem;
+  }
+}
+
+/* Extra small height adjustments */
+@media screen and (max-height: 350px) {
+  .hamburger-icon {
+    top: calc(0.25rem + 12px);
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  .hamburger-close {
+    top: calc(0.25rem + 12px);
+    width: 44px;
+    height: 44px;
+    font-size: 1.4rem;
+  }
+}
+
+.hamburger-icon:hover {
+  background: linear-gradient(135deg, #3182ce, #4299e1);
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 6px 18px rgba(44, 90, 160, 0.4);
+  border-color: #e2e8f0;
+}
+
+.hamburger-icon:focus {
+  outline: 2px solid #90cdf4;
+  outline-offset: 2px;
+}
+
+/* Hide hamburger icon when menu is open */
+.hamburger-icon.open {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Full Screen Overlay */
+.hamburger-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+
+/* Close Button */
+.hamburger-close {
+  position: fixed;
+  top: calc(1rem + 24px);
+  right: 3rem;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #e53e3e, #fc8181);
+  border: 3px solid #ffffff;
+  font-size: 1.8rem;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10001;
+  font-weight: bold;
+  box-shadow: 0 4px 16px rgba(229, 62, 62, 0.4);
+  line-height: 1;
+}
+
+.hamburger-close:hover {
+  background: linear-gradient(135deg, #c53030, #e53e3e);
+  transform: scale(1.08) rotate(90deg) translateY(-50%);
+  box-shadow: 0 6px 20px rgba(229, 62, 62, 0.6);
+  border-color: #f7fafc;
+}
+
+.hamburger-close:focus {
+  outline: 2px solid #90cdf4;
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments for close button to match hamburger icon */
+@media screen and (max-height: 500px) {
+  .hamburger-close {
+    top: calc(0.4rem + 18px);
+    right: 2.5rem;
+    width: 52px;
+    height: 52px;
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (max-height: 400px) {
+  .hamburger-close {
+    top: calc(0.3rem + 14px);
+    right: 2rem;
+    width: 48px;
+    height: 48px;
+    font-size: 1.4rem;
+  }
+}
+
+/* Menu Content Container */
+.hamburger-menu-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  width: 320px;
+  max-width: 80vw;
+  height: 100vh;
+  padding: 4rem 2rem 2rem 2rem;
+  box-shadow: -8px 0 32px rgba(31, 41, 55, 0.15);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  overflow-y: auto;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Menu List */
+.hamburger-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Menu Items */
+.hamburger-menu-item {
+  display: block;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #2c5aa0, #3182ce);
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(44, 90, 160, 0.2);
+  text-align: center;
+  min-height: 56px;
+  box-sizing: border-box;
+}
+
+.hamburger-menu-item:hover {
+  background: linear-gradient(135deg, #3182ce, #4299e1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(44, 90, 160, 0.3);
+}
+
+.hamburger-menu-item:focus {
+  outline: 2px solid #90cdf4;
+  outline-offset: 2px;
+}
+
+/* Special styling for donate buttons */
+.hamburger-nominate-btn {
+  background: linear-gradient(135deg, #38a169, #48bb78) !important;
+}
+
+.hamburger-nominate-btn:hover {
+  background: linear-gradient(135deg, #2f855a, #38a169) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(56, 161, 105, 0.3);
+}
+
+.hamburger-donate-btn {
+  background: linear-gradient(135deg, #38a169, #48bb78) !important;
+}
+
+.hamburger-donate-btn:hover {
+  background: linear-gradient(135deg, #2f855a, #38a169) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(56, 161, 105, 0.3);
+}
+
+/* Dropdown styling */
+.hamburger-dropdown {
+  list-style: none;
+  margin: 0.5rem 0 0 0;
+  padding: 0 0 0 1rem;
+  border-left: 3px solid #4299e1;
+}
+
+.hamburger-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(66, 153, 225, 0.1);
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  color: #2c5aa0;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.hamburger-dropdown-item:hover {
+  background: rgba(66, 153, 225, 0.2);
+  transform: translateX(4px);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 400px) {
+  .hamburger-menu-content {
+    width: 280px;
+    padding: 1.5rem 1rem;
+  }
+
+  .hamburger-menu-item {
+    padding: 0.75rem 1rem;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .hamburger-menu-content {
+    width: 260px;
+    padding: 1rem 0.75rem;
+  }
+
+  .hamburger-menu-item {
+    padding: 0.5rem 0.75rem;
+    font-size: 13px;
+  }
+}
+
+/* Height-based responsive adjustments for small screen heights */
+@media screen and (max-height: 600px) {
+  .hamburger-menu-content {
+    padding: 3rem 2rem 1rem 2rem;
+  }
+
+  .hamburger-menu-item {
+    padding: 0.8rem 1.2rem;
+    font-size: 15px;
+    min-height: 48px;
+  }
+
+  .hamburger-dropdown-item {
+    padding: 0.6rem 0.8rem;
+    font-size: 13px;
+  }
+
+  .hamburger-menu-list {
+    gap: 0.8rem;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  .hamburger-menu-content {
+    padding: 2.5rem 1.5rem 0.5rem 1.5rem;
+  }
+
+  .hamburger-menu-item {
+    padding: 0.6rem 1rem;
+    font-size: 14px;
+    min-height: 40px;
+  }
+
+  .hamburger-dropdown-item {
+    padding: 0.5rem 0.6rem;
+    font-size: 12px;
+  }
+
+  .hamburger-menu-list {
+    gap: 0.6rem;
+  }
+}
+
+@media screen and (max-height: 400px) {
+  .hamburger-menu-content {
+    padding: 2rem 1rem 0.5rem 1rem;
+  }
+
+  .hamburger-menu-item {
+    padding: 0.5rem 0.8rem;
+    font-size: 13px;
+    min-height: 36px;
+  }
+
+  .hamburger-dropdown-item {
+    padding: 0.4rem 0.5rem;
+    font-size: 11px;
+  }
+
+  .hamburger-menu-list {
+    gap: 0.5rem;
+  }
+
+  .hamburger-close {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+  }
+}

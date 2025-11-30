@@ -146,7 +146,7 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
             className="donate__button"
           >
             Donate
-          </a>
+          </a>{' '}
         </li>
       </ul>
     </nav>
