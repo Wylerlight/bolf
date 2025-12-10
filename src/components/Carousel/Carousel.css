@@ -27,7 +27,8 @@
   height: auto; /* Allow cards to expand based on content */
   min-height: 400px;
   padding: 2.5rem;
-  box-sizing: border-box; /* Clean, professional gradient that's eye-catching but not overwhelming */
+  box-sizing: border-box;
+  /* Clean, professional gradient that's eye-catching but not overwhelming */
   background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
   color: #ffffff;
   border: 2px solid rgba(255, 255, 255, 0.2);
@@ -37,9 +38,7 @@
 
   /* Subtle shadow */
   box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.15), 0px 4px 16px rgba(0, 0, 0, 0.1),
-    0px 2px 8px rgba(0, 0, 0, 0.05);
-
-  /* Ensure cards are positioned for animation */
+    0px 2px 8px rgba(0, 0, 0, 0.05); /* Ensure cards are positioned for animation - initial position */
   left: 50%;
   top: 50%;
   transform-origin: center;
@@ -307,21 +306,23 @@
   }
 
   .slider-card {
-    position: static;
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    min-height: 220px;
-    padding: 1rem;
-    border-radius: 12px;
-    left: auto;
-    top: auto;
-    transform: none;
-    opacity: 1 !important;
-    /* Override any motion transforms */
+    position: static !important;
+    width: 100% !important;
+    max-width: 350px !important;
+    height: auto !important;
+    min-height: 220px !important;
+    padding: 1rem !important;
+    border-radius: 12px !important;
+    left: auto !important;
+    top: auto !important;
     transform: none !important;
-    margin: 0 auto;
+    opacity: 1 !important;
+    /* Override any motion transforms for mobile only */
+    margin: 0 auto !important;
+    scale: none !important;
+    rotate: none !important;
   }
+
   .slider-card h2 {
     font-size: 1.35rem;
     margin-bottom: 0.875rem;
@@ -632,5 +633,16 @@
   .slider-card p {
     font-size: 0.85rem;
     line-height: 1.3;
+  }
+}
+
+/* Desktop and large screens - ensure animations work properly */
+@media (min-width: 481px) {
+  .slider-card {
+    /* Ensure motion animations are enabled for desktop */
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    /* Don't override transform - let Framer Motion handle it */
   }
 }

@@ -88,7 +88,6 @@ body {
     max-width: 100%;
     height: auto;
   }
-
   /* Prevent horizontal overflow */
   *:not(html):not(body) {
     max-width: 100%;
@@ -97,16 +96,11 @@ body {
 
   /* Ensure no element causes horizontal scrolling */
   body {
-    overflow-x: hidden;
+    /* overflow-x: hidden; - Removed to fix carousel scroll detection */
   }
 
-  /* Fix any potential container overflow */
-  .main,
-  .welcome__secondary {
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100%;
-  }
+  /* Remove overflow-x hidden from main containers to fix carousel scroll detection */
+}
 }
 
 @media screen and (max-width: 320px) {
