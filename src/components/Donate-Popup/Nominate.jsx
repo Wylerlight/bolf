@@ -8,7 +8,7 @@ export default function Nominate({ isOpen, onClose }) {
         <ul className="donation__links">
           <li>
             <a
-              href="https://forms.gle/6Ntr7xUXgDLYrRWG9"
+              href="https://forms.gle/QMYkzCADqb36uNS57"
               className="donation__links-item"
               target="_blank"
               rel="noopener noreferrer"
