@@ -25,7 +25,7 @@ export default function Events() {
     <>
       <section className="current__events" id="upcoming-events">
         <h2 className="events__title">
-          CURRENT OUTREACH EVENTS <br /> 🦃 THANKSGIVING 🦃
+          CURRENT OUTREACH EVENTS <br /> 🎄 CHRISTMAS 🎄
         </h2>
         <button
           className="events-nominate-wrapper"
@@ -38,7 +38,7 @@ export default function Events() {
           />
         </button>
         <div className="events__container">
-          <img src={Thanksgiving} alt="Event 1" className="events__image" />
+          {/* <img src={Thanksgiving} alt="Event 1" className="events__image" /> */}
           <img src={Christmas} alt="Event 2" className="events__image" />
         </div>
         <button
