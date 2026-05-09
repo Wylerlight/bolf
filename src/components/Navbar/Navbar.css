@@ -42,16 +42,6 @@ a {
   padding: 12px 24px;
   margin: 0;
   font-size: 20px;
-
-  background: linear-gradient(
-    90deg,
-    rgba(241, 241, 241, 0),
-    rgba(241, 241, 241, 0.9) 10%,
-    rgba(241, 241, 241, 0.9) 90%,
-    rgba(241, 241, 241, 0)
-  );
-
-  backdrop-filter: blur(6px);
 }
 
 .navbar__selections {

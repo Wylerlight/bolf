@@ -14,6 +14,8 @@ import Nominate from './components/Donate-Popup/Nominate';
 
 import boardOfDirectorsPoster from './assets/BOLF Board New.jpg';
 
+import EasterEventVid from './assets/Built On Love Easter Event.mp4';
+
 function App() {
   const platinumSponsors = ['IEE', 'Modern Woodmen', 'Amlani Insurance Agency'];
   const goldSponsors = ['Prospect', 'Fidelity', 'Craig & Sons', 'Paulson'];
@@ -79,6 +81,15 @@ function App() {
           </div>
 
           <Events />
+
+          <section className="easter__video">
+            <h2 className="easter__video-title">Easter Event Highlights</h2>
+            <video
+              className="easter__video-player"
+              controls
+              src={EasterEventVid}
+            />
+          </section>
 
           <section className="welcome__secondary">
             <div className="youtube">

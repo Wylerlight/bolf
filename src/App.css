@@ -258,3 +258,28 @@ a {
   color: #555;
   text-align: center;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                Easter Video                                */
+/* -------------------------------------------------------------------------- */
+
+.easter__video {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.easter__video-title {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+}
+
+.easter__video-player {
+  width: 80%;
+  margin-top: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+}
