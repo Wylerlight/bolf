@@ -185,7 +185,7 @@ a {
     position: fixed;
     top: 0;
     right: 0;
-    width: 28%; /* Make the menu occupy 25% of the screen width */
+    width: 40%; /* Make the menu occupy 25% of the screen width */
     background-color: rgba(133, 133, 133, 0.5);
     display: flex;
     flex-direction: column;
