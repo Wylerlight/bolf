@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 export default function HamburgerMenu({
   handleDonateClick,
   handleDonateOnlyClick,
+  handleTournamentSponsorLinks,
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -122,6 +123,17 @@ export default function HamburgerMenu({
               }}
             >
               Donate
+            </a>
+          </li>
+          <li className="hamburger__selections" id="donate">
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                handleTournamentSponsorLinks();
+                setIsOpen(false);
+              }}
+            >
+              Tournament Sponsorship
             </a>
           </li>
         </ul>
