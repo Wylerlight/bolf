@@ -58,11 +58,9 @@ function App() {
                   BUILT ON LOVE FOUNDATION
                 </span>{' '}
                 is dedicated to uplifting underprivileged individuals and
-                families in the Inland Empire, with a direct focus on the
-                Yucaipa to Banning Pass area. Through our efforts, we aim to
-                bridge the gap for those struggling to make ends meet, ensuring
-                that no family goes without essential support during critical
-                times of the year.
+                families. Through our efforts, we aim to bridge the gap for
+                those struggling to make ends meet, ensuring that no family goes
+                without essential support during critical times of the year.
               </p>
             </div>
             <div>
