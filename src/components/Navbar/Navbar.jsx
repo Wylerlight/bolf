@@ -4,7 +4,11 @@ import HamburgerMenu from '../Hamburger-Menu/Hamburger-Menu';
 
 import orgLogo from '../../assets/image4.png';
 
-export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
+export default function Navbar({
+  handleDonateClick,
+  handleDonateOnlyClick,
+  handleTournamentSponsorLinks,
+}) {
   const [dropdownOpen, setDropdownOpen] = useState(null);
   const toggleDropdown = (menu) => {
     setDropdownOpen(dropdownOpen === menu ? null : menu);
@@ -28,6 +32,7 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
       <HamburgerMenu
         handleDonateClick={handleDonateClick}
         handleDonateOnlyClick={handleDonateOnlyClick}
+        handleTournamentSponsorLinks={handleTournamentSponsorLinks}
       />
       <ul className="navbar__list">
         <li className="navbar__selections">
@@ -119,6 +124,17 @@ export default function Navbar({ handleDonateClick, handleDonateOnlyClick }) {
             className="donate__button"
           >
             Donate
+          </a>
+        </li>
+        <li className="navbar__selections" id="tournament__button">
+          <a
+            onClick={(e) => {
+              e.preventDefault();
+              handleTournamentSponsorLinks();
+            }}
+            className="donate__button"
+          >
+            Tournament Sponsorship
           </a>
         </li>
       </ul>

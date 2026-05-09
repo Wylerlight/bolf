@@ -22,6 +22,7 @@ function App() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isDonateOnly, setIsDonateOnly] = useState(false);
+  const [tournamentSponsorLinks, setTournamentSponsorLinks] = useState(null);
 
   const handleDonateClick = () => {
     setIsOpen(!isOpen);
@@ -30,11 +31,16 @@ function App() {
     setIsDonateOnly(!isDonateOnly);
   };
 
+  const handleTournamentSponsorLinks = () => {
+    setTournamentSponsorLinks(!tournamentSponsorLinks);
+  };
+
   return (
     <>
       <Navbar
         handleDonateClick={handleDonateClick}
         handleDonateOnlyClick={handleDonateOnlyClick}
+        handleTournamentSponsorLinks={handleTournamentSponsorLinks}
       />
       <section id="page-top" className="navbar__line"></section>
 
@@ -190,6 +196,12 @@ function App() {
       {isOpen && <Nominate isOpen={isOpen} onClose={handleDonateClick} />}
       {isDonateOnly && (
         <DonateOnly isOpen={isDonateOnly} onClose={handleDonateOnlyClick} />
+      )}
+      {tournamentSponsorLinks && (
+        <DonateLinks
+          isOpen={tournamentSponsorLinks}
+          onClose={handleTournamentSponsorLinks}
+        />
       )}
     </>
   );
