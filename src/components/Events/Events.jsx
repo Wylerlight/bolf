@@ -7,11 +7,11 @@ import Nominate from '../Donate-Popup/Nominate';
 
 import Thanksgiving from '../../assets/Thanksgiving Poster.jpg';
 import Christmas from '../../assets/Christmas Poster.jpg';
-import nominateBanner from '../../assets/BOLF Google Header .jpg';
+// import nominateBanner from '../../assets/BOLF Google Header .jpg';
 import eventsCollage1 from '../../assets/events-collage1.JPG';
 import eventsCollage2 from '../../assets/events-collage2.JPG';
 import golf2026 from '../../assets/golf-2026.jpg';
-import b2s2026 from '../../assets/BackPack Drive 2026.jpg';
+// import b2s2026 from '../../assets/BackPack Drive 2026.jpg';
 
 export default function Events() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,11 +26,16 @@ export default function Events() {
   return (
     <>
       <section className="current__events" id="upcoming-events">
-        <h2 className="events__title">
-          CURRENT OUTREACH EVENTS <br /> ANNUAL GOLF TOURNAMENT & BACK-TO-SCHOOL
-          DRIVE 2026
+        <h2 className="events__signup-sign">
+          <span className="events__signup-kicker">Annual Golf Tournament</span>
+          Sign up to Golf
         </h2>
-        <button
+        <div className="events__arrow" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        {/* <button
           className="events-nominate-wrapper"
           onClick={handleNominateClick}
         >
@@ -39,15 +44,12 @@ export default function Events() {
             alt="Thanksgiving nominate banner"
             className="nominate-banner"
           />
-        </button>
+        </button> */}
         <div className="events__container">
           {/* <img src={Thanksgiving} alt="Event 1" className="events__image" /> */}
           <img src={golf2026} alt="Event 2" className="events__image" />
         </div>
-        <div className="events__container">
-          {/* <img src={Thanksgiving} alt="Event 1" className="events__image" /> */}
-          <img src={b2s2026} alt="Event 2" className="events__image" />
-        </div>
+
         <button
           className="events__signup-button"
           onClick={(e) => {

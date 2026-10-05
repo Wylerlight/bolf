@@ -1,0 +1,186 @@
+/* ---- Theme: tweak these to match your site ---- */
+.sm-wrapper {
+  --sm-bg: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  --sm-text: #f4f7fb;
+  --sm-accent: #f6c453;
+  --sm-card-bg: rgba(255, 255, 255, 0.08);
+  --sm-card-border: rgba(255, 255, 255, 0.18);
+  --sm-fade: 80px;
+
+  background: var(--sm-bg);
+  color: var(--sm-text);
+  padding: 2rem 0 2.25rem;
+  overflow: hidden;
+  position: relative;
+
+  /* Keep the banner inside its parent, even in flex/grid layouts */
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  /* Matches your original banner's shape and spacing */
+  border-radius: 5px;
+  margin: 0 0 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sm-title {
+  margin: 0 0 1.25rem;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sm-accent);
+}
+
+/* Soft fade at the left and right edges */
+.sm-viewport {
+  overflow: hidden;
+  width: 100%;
+  min-width: 0;
+  /* Stops the long scrolling track from stretching the page wider */
+  contain: inline-size;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 var(--sm-fade),
+    #000 calc(100% - var(--sm-fade)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 var(--sm-fade),
+    #000 calc(100% - var(--sm-fade)),
+    transparent
+  );
+}
+
+.sm-track {
+  display: flex;
+  width: max-content;
+  margin: 0;
+  padding: 0.5rem 0;
+  list-style: none;
+  animation: sm-scroll var(--sm-duration) linear infinite;
+  animation-direction: var(--sm-direction);
+}
+
+.sm-pausable:hover .sm-track,
+.sm-pausable:focus-within .sm-track {
+  animation-play-state: paused;
+}
+
+@keyframes sm-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.sm-item {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.sm-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  background: var(--sm-card-bg);
+  border: 1px solid var(--sm-card-border);
+  backdrop-filter: blur(6px);
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+a.sm-card:hover,
+a.sm-card:focus-visible,
+span.sm-card:hover {
+  transform: translateY(-3px) scale(1.04);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--sm-accent);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  outline: none;
+}
+
+.sm-name {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.sm-logo {
+  height: 32px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  filter: grayscale(1) brightness(1.8);
+  opacity: 0.85;
+  transition:
+    filter 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.sm-card:hover .sm-logo {
+  filter: none;
+  opacity: 1;
+}
+
+.sm-sep {
+  margin: 0 1.25rem;
+  color: var(--sm-accent);
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+@media (max-width: 600px) {
+  .sm-wrapper {
+    --sm-fade: 32px;
+    padding: 1.5rem 0 1.75rem;
+  }
+  .sm-card {
+    min-height: 46px;
+    padding: 0.6rem 1.15rem;
+  }
+  .sm-name {
+    font-size: 1rem;
+  }
+  .sm-sep {
+    margin: 0 0.8rem;
+  }
+}
+
+/* Respect users who prefer less motion: show a static, wrapped list instead */
+@media (prefers-reduced-motion: reduce) {
+  .sm-viewport {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .sm-track {
+    animation: none;
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 0;
+    padding: 0 1rem;
+  }
+  .sm-track > [aria-hidden='true'] {
+    display: none;
+  }
+}

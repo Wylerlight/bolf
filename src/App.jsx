@@ -4,7 +4,8 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Events from './components/Events/Events';
 import Footer from './components/Footer/Footer';
-import SponsorsMarquee from './Sponsors';
+// import SponsorsMarquee from './Sponsors';
+import SponsorsMarquee from './SponsorsMarquee';
 import MailChimp from './components/MailChimp/MailChimp';
 
 import DonateLinks from './components/Donate-Popup/Donate-Popup';
@@ -17,8 +18,19 @@ import boardOfDirectorsPoster from './assets/BOLF Board New.jpg';
 import EasterEventVid from './assets/Built On Love Easter Event.mp4';
 
 function App() {
-  const platinumSponsors = ['IEE', 'Modern Woodmen', 'Amlani Insurance Agency'];
-  const goldSponsors = ['Prospect', 'Fidelity', 'Craig & Sons', 'Paulson'];
+  const platinumSponsors = [
+    'Inland Empire Escrow',
+    'Sierra Crest Mortgage Inc',
+    'Amlani Insurance Agency',
+    'C&D Real Estate',
+    'Craig & Sons Termite',
+  ];
+  const goldSponsors = [
+    'Markarian Law Group',
+    'Laura May Stewart Foundation',
+    'Riverside County 5th District Supervisor',
+    'Jan-Pro USA',
+  ];
 
   // FUNCTIONS
 
